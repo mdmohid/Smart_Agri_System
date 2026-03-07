@@ -1,0 +1,30 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Django database
+db.sqlite3
+
+# environment variables
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ML_models
+ml_models/
+*.h5
+*.pkl
+*.model
+
+#Datasets
+datasets/
+
+# logs
+*.log
+
+# VS Code
+.vscode/
