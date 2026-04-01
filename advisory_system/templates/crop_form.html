@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Crop Recommendation</title>
+  </head>
+  <body>
+    <h1>Crop Recommendation System</h1>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <label>Nitrogen:</label>
+      <input type="number" step="any" name="N" /><br /><br />
+
+      <label>Phosphorus:</label>
+      <input type="number" step="any" name="P" /><br /><br />
+
+      <label>Potassium:</label>
+      <input type="number" step="any" name="K" /><br /><br />
+
+      <label>Temperature:</label>
+      <input type="number" step="any" name="temperature" /><br /><br />
+
+      <label>Humidity:</label>
+      <input type="number" step="any" name="humidity" /><br /><br />
+
+      <label>pH:</label>
+      <input type="number" step="any" name="ph" /><br /><br />
+
+      <label>Rainfall:</label>
+      <input type="number" step="any" name="rainfall" /><br /><br />
+
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if recommended_crop %}
+    <h2>Recommended Crop: {{ recommended_crop }}</h2>
+    {% endif %}
+  </body>
+</html>
