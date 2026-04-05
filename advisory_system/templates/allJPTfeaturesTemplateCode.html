@@ -8,3 +8,218 @@
 {% if recommended_crop %}
 <h2>Recommended Crop: {{ recommended_crop }}</h2>
 {% endif %} {% endblock %} -->
+
+<nav class="navbar is-white has-shadow" role="navigation">
+  <div class="container">
+    <!-- Logo -->
+    <div class="navbar-brand">
+      <a class="navbar-item has-text-weight-bold is-size-5"> 🌱 AgriSmart </a>
+
+      <!-- Mobile Toggle -->
+      <a role="button" class="navbar-burger" data-target="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+
+    <!-- Menu -->
+    <div id="navMenu" class="navbar-menu">
+      <!-- Center Links -->
+      <div class="navbar-start">
+        <a class="navbar-item">Home</a>
+        <a class="navbar-item">About Us</a>
+        <a class="navbar-item">Features</a>
+        <a class="navbar-item">Contact Us</a>
+      </div>
+
+      <!-- Right Buttons -->
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-light">Login</a>
+            <a class="button is-dark">Register</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Burger Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const burgers = document.querySelectorAll(".navbar-burger");
+    burgers.forEach((el) => {
+      el.addEventListener("click", () => {
+        const target = el.dataset.target;
+        const menu = document.getElementById(target);
+        el.classList.toggle("is-active");
+        menu.classList.toggle("is-active");
+      });
+    });
+  });
+</script>
+-->
+
+<footer class="footer has-background-green has-text-white">
+  <div class="container">
+    <div class="columns">
+      <!-- Brand -->
+      <div class="column">
+        <h2 class="title is-5 has-text-white">🌱 AgriSmart</h2>
+        <p>Smart Agriculture Advisory System for modern farming solutions.</p>
+      </div>
+
+      <!-- Links -->
+      <div class="column">
+        <h3 class="title is-6 has-text-white">Links</h3>
+        <p><a class="has-text-grey-light">Home</a></p>
+        <p><a class="has-text-grey-light">About Us</a></p>
+        <p><a class="has-text-grey-light">Features</a></p>
+        <p><a class="has-text-grey-light">Contact</a></p>
+      </div>
+
+      <!-- Support -->
+      <div class="column">
+        <h3 class="title is-6 has-text-white">Help & Support</h3>
+        <p><a class="has-text-grey-light">FAQ</a></p>
+        <p><a class="has-text-grey-light">Documentation</a></p>
+        <p><a class="has-text-grey-light">Support Center</a></p>
+        <p><a class="has-text-grey-light">Privacy Policy</a></p>
+      </div>
+
+      <!-- Social -->
+      <div class="column">
+        <h3 class="title is-6 has-text-white">Social Media</h3>
+        <div class="buttons">
+          <a class="button is-dark">F</a>
+          <a class="button is-dark">T</a>
+          <a class="button is-dark">I</a>
+          <a class="button is-dark">L</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="has-background-grey" />
+
+    <p class="has-text-centered has-text-grey-light">
+      © 2026 Smart Agriculture Advisory System. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<!-- index page -->
+{% extends 'base.html' %} {% block content %}
+
+<!-- HERO SECTION -->
+<section class="section">
+  <div class="container">
+    <div class="columns is-vcentered">
+      <!-- Left Image -->
+      <div class="column has-text-centered">
+        <figure class="image is-256x256 is-inline-block">
+          <img
+            src="https://via.placeholder.com/300"
+            style="border-radius: 50%"
+          />
+        </figure>
+      </div>
+
+      <!-- Right Content -->
+      <div class="column">
+        <h1 class="title">Introduction of the System</h1>
+        <p class="mb-4">
+          Our Smart Agriculture Advisory System provides data-driven insights
+          for farmers. From crop recommendation to disease detection, we empower
+          agricultural professionals.
+        </p>
+
+        <a class="button is-dark is-medium">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section has-background-light">
+  <div class="container has-text-centered">
+    <h2 class="title">Our System Features</h2>
+
+    <div class="columns mt-5">
+      <div class="column">
+        <div class="box">
+          🌿
+          <p class="mt-2">Crop Recommendation</p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="box">
+          🔬
+          <p class="mt-2">Disease Detection</p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="box">
+          📈
+          <p class="mt-2">Yield Prediction</p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="box">
+          🛒
+          <p class="mt-2">Market Advisory</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section">
+  <div class="container">
+    <div class="columns is-vcentered">
+      <!-- Text -->
+      <div class="column">
+        <h2 class="title">Feel easy to reach us</h2>
+        <p>
+          Have questions? Our team is here to help you understand how our
+          platform can transform your agricultural operations.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <div class="column">
+        <div class="box">
+          <div class="field">
+            <label class="label">Name</label>
+            <input class="input" type="text" placeholder="Enter your name" />
+          </div>
+
+          <div class="field">
+            <label class="label">Email</label>
+            <input class="input" type="email" placeholder="Enter your email" />
+          </div>
+
+          <div class="field">
+            <label class="label">Message</label>
+            <textarea
+              class="textarea"
+              placeholder="Enter your message"
+            ></textarea>
+          </div>
+
+          <button class="button is-dark is-fullwidth">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %} why background of this black ? make it more beautiful layout and
+also one thing cannot i use font where just pasted the icons
+
+<!-- href="{% url 'register' %}" -->

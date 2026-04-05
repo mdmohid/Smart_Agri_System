@@ -1,0 +1,93 @@
+<nav class="navbar is-white has-shadow" role="navigation">
+  <div class="container">
+    <!-- LOGO -->
+    <div class="navbar-brand">
+      <a class="navbar-item has-text-weight-bold is-size-4"> 🌱 AgriSmart </a>
+
+      <a role="button" class="navbar-burger" data-target="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+
+    <!-- MENU -->
+    <div id="navMenu" class="navbar-menu">
+      <!-- LEFT SIDE EMPTY (for spacing) -->
+      <div class="navbar-start"></div>
+
+      <!-- CENTER MENU -->
+      <!-- <div
+        class="navbar-item has-text-centered is-flex-grow-1 is-justify-content-center is-hidden-touch"
+      > -->
+      <div
+        class="navbar-start is-flex is-justify-content-center is-flex-grow-1 is-hidden-touch"
+      >
+        <a class="navbar-item custom-nav">Home</a>
+        <a class="navbar-item custom-nav">About Us</a>
+        <a class="navbar-item custom-nav">Features</a>
+        <a class="navbar-item custom-nav">Contact Us</a>
+      </div>
+
+      <!-- MOBILE MENU (DEFAULT STACK) -->
+      <div class="navbar-start is-hidden-desktop">
+        <a class="navbar-item custom-nav">Home</a>
+        <a class="navbar-item custom-nav">About Us</a>
+        <a class="navbar-item custom-nav">Features</a>
+        <a class="navbar-item custom-nav">Contact Us</a>
+      </div>
+
+      <!-- RIGHT BUTTONS -->
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-success is-light">Login</a>
+            <a class="button is-success">Register</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    min-height: 100px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .navbar-item {
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+  }
+
+  .custom-nav {
+    /* font-size: 1.8rem; */
+    font-weight: bold;
+  }
+
+  .custom-nav:hover {
+    background-color: #18a163;
+    color: white !important;
+    border-radius: 1px;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const burgers = document.querySelectorAll(".navbar-burger");
+    burgers.forEach((el) => {
+      el.addEventListener("click", () => {
+        const target = el.dataset.target;
+        const menu = document.getElementById(target);
+        el.classList.toggle("is-active");
+        menu.classList.toggle("is-active");
+      });
+    });
+  });
+</script>

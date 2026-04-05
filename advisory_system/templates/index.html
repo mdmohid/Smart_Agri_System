@@ -1,0 +1,712 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgriSmart | Smart Agriculture Advisory System</title>
+
+    <!-- Bulma CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+
+    <!-- FontAwesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts for modern typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        font-family: "Inter", sans-serif;
+      }
+
+      body {
+        background-color: #fefcf5;
+      }
+
+      /* navbar overrides to match green elegance */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        min-height: 85px;
+        background-color: white;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 0.25rem 0;
+      }
+
+      .navbar-item {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .custom-nav {
+        font-weight: 600;
+        margin: 0 0.2rem;
+        border-radius: 40px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .custom-nav:hover {
+        background-color: #2f855a;
+        color: white !important;
+        border-radius: 40px;
+      }
+
+      /* hero section with subtle pattern */
+      .hero-garden {
+        background: linear-gradient(135deg, #f8f9f2 0%, #eaf7e6 100%);
+        border-radius: 0 0 3rem 3rem;
+        margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-garden::before {
+        content: "🌾";
+        font-size: 220px;
+        opacity: 0.05;
+        position: absolute;
+        bottom: -20px;
+        right: -30px;
+        pointer-events: none;
+      }
+
+      .btn-primary {
+        background-color: #2f855a;
+        color: white;
+        font-weight: 600;
+        border-radius: 48px;
+        padding: 0.8rem 2rem;
+        box-shadow: 0 4px 12px rgba(47, 133, 90, 0.25);
+        transition:
+          transform 0.2s,
+          background 0.2s;
+      }
+
+      .btn-primary:hover {
+        background-color: #1f6e48;
+        transform: translateY(-2px);
+        color: white;
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 28px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        transition: all 0.25s ease;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        border: 1px solid rgba(47, 133, 90, 0.1);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 30px -12px rgba(47, 133, 90, 0.2);
+        border-color: #2f855a30;
+      }
+
+      .feature-icon {
+        background-color: #eef6f0;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 60px;
+        margin: 0 auto 1.5rem;
+        color: #2f855a;
+        font-size: 2.2rem;
+      }
+
+      .contact-card {
+        background: white;
+        border-radius: 2rem;
+        box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+      }
+
+      .input-custom,
+      .textarea-custom {
+        border-radius: 60px;
+        border: 1px solid #e2e8f0;
+        padding: 0.9rem 1.2rem;
+        box-shadow: none;
+        transition: all 0.2s;
+      }
+
+      .input-custom:focus,
+      .textarea-custom:focus {
+        border-color: #2f855a;
+        box-shadow: 0 0 0 2px rgba(47, 133, 90, 0.2);
+      }
+
+      .textarea-custom {
+        border-radius: 28px;
+      }
+
+      .btn-send {
+        background-color: #2f855a;
+        border-radius: 60px;
+        font-weight: 600;
+        padding: 0.8rem 2rem;
+        width: 100%;
+        color: white;
+        transition: all 0.2s;
+      }
+
+      .btn-send:hover {
+        background-color: #1f6e48;
+        transform: scale(0.98);
+        color: white;
+      }
+
+      .footer-green {
+        background-color: #1e3a2f;
+        color: #e2f0e6;
+      }
+
+      .social-btn {
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #2f855a;
+        color: white;
+        transition: 0.2s;
+        margin: 0 5px;
+      }
+
+      .social-btn:hover {
+        background-color: #48c78e;
+        color: #1e3a2f;
+        transform: translateY(-3px);
+      }
+
+      .footer a {
+        color: #cbe6d9;
+        transition: 0.2s;
+      }
+
+      .footer a:hover {
+        color: #ffffff;
+        text-decoration: underline;
+      }
+
+      .section-title {
+        font-weight: 700;
+        color: #1e3a2f;
+        position: relative;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+
+      .section-title:after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background-color: #2f855a;
+        border-radius: 4px;
+      }
+
+      .has-text-centered .section-title:after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      @media (max-width: 768px) {
+        .hero-garden {
+          border-radius: 0 0 1.5rem 1.5rem;
+        }
+        .feature-card {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ==================== HEADER (navbar) ==================== -->
+    <nav class="navbar is-white has-shadow" role="navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <a
+            class="navbar-item has-text-weight-bold is-size-4"
+            style="color: #1e3a2f"
+          >
+            🌱 AgriSmart
+          </a>
+          <a
+            role="button"
+            class="navbar-burger"
+            data-target="navMenu"
+            aria-label="menu"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navMenu" class="navbar-menu">
+          <div class="navbar-start"></div>
+
+          <!-- Center menu (desktop) -->
+          <div
+            class="navbar-start is-flex is-justify-content-center is-flex-grow-1 is-hidden-touch"
+          >
+            <a class="navbar-item custom-nav">Home</a>
+            <a class="navbar-item custom-nav">About Us</a>
+            <a class="navbar-item custom-nav">Features</a>
+            <a class="navbar-item custom-nav">Contact Us</a>
+          </div>
+
+          <!-- Mobile menu -->
+          <div class="navbar-start is-hidden-desktop">
+            <a class="navbar-item custom-nav">Home</a>
+            <a class="navbar-item custom-nav">About Us</a>
+            <a class="navbar-item custom-nav">Features</a>
+            <a class="navbar-item custom-nav">Contact Us</a>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a
+                  class="button is-success is-light"
+                  style="border-radius: 40px; font-weight: 500"
+                  >Login</a
+                >
+                <a
+                  class="button is-success"
+                  style="
+                    background-color: #2f855a;
+                    border-radius: 40px;
+                    font-weight: 500;
+                  "
+                  >Register</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main>
+      <!-- HERO + Introduction section -->
+      <section class="hero-garden py-5">
+        <div class="container py-4">
+          <div class="columns is-vcentered is-multiline">
+            <div class="column is-7">
+              <h1
+                class="title is-1"
+                style="color: #1e3a2f; font-weight: 800; line-height: 1.2"
+              >
+                Smart Agriculture <br />Advisory System
+              </h1>
+              <p
+                class="subtitle is-5 mt-4"
+                style="color: #3b5c4a; max-width: 90%"
+              >
+                Leverage cutting-edge AI to get data-driven insights, crop
+                recommendations, disease prediction, and yield forecasts — all
+                tailored for modern farming.
+              </p>
+              <div class="mt-5">
+                <a class="button btn-primary is-medium">
+                  Get Started &nbsp;<i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+              <div class="mt-5">
+                <p class="has-text-grey-dark">
+                  <i class="fas fa-users"></i> Join thousands of farmers already
+                  transforming agriculture
+                </p>
+              </div>
+            </div>
+            <div class="column is-5 has-text-centered">
+              <img
+                src="https://placehold.co/500x400/eef6f0/2f855a?text=🌾+Agri+Analytics"
+                alt="Smart farming illustration"
+                style="
+                  max-width: 100%;
+                  border-radius: 32px;
+                  box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+                "
+              />
+            </div>
+          </div>
+
+          <!-- Introduction card additional -->
+          <div
+            class="box mt-6"
+            style="
+              background: rgba(255, 255, 245, 0.8);
+              border-radius: 32px;
+              border: 1px solid #ddebe0;
+            "
+          >
+            <div class="columns is-vcentered">
+              <div class="column is-9">
+                <h2 class="title is-4" style="color: #1e3a2f">
+                  Introduction of the System
+                </h2>
+                <p class="has-text-grey-dark">
+                  Our Smart Agriculture Advisory System leverages cutting-edge
+                  technology to provide farmers with data-driven insights and
+                  recommendations for optimal crop management. From crop
+                  recommendation to disease prediction, we empower agricultural
+                  professionals with the tools they need to maximize
+                  productivity and sustainability.
+                  <br /><br />
+                  <strong
+                    >Join thousands of farmers who are already transforming
+                    their agricultural practices with our intelligent advisory
+                    platform.</strong
+                  >
+                </p>
+              </div>
+              <div class="column is-3 has-text-centered">
+                <i
+                  class="fas fa-chart-line"
+                  style="font-size: 4rem; color: #2f855a"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES SECTION (Our System Features) -->
+      <section class="section">
+        <div class="container">
+          <div class="has-text-centered mb-6">
+            <h2 class="title is-2 section-title" style="font-size: 2.2rem">
+              Our System Features
+            </h2>
+            <p class="subtitle is-5 mt-4">
+              AI-powered modules to revolutionize your farm management
+            </p>
+          </div>
+
+          <div class="columns is-multiline">
+            <!-- Feature 1 -->
+            <div class="column is-3">
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="fas fa-seedling fa-2x"></i>
+                </div>
+                <h3 class="title is-5" style="color: #1e3a2f">
+                  Crop Recommendation
+                </h3>
+                <p class="has-text-grey">
+                  Smart suggestions based on soil, climate, and season for
+                  maximum yield.
+                </p>
+              </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="column is-3">
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="fas fa-disease fa-2x"></i>
+                </div>
+                <h3 class="title is-5" style="color: #1e3a2f">
+                  Disease Detection
+                </h3>
+                <p class="has-text-grey">
+                  Instant diagnosis of plant diseases using image recognition &
+                  AI.
+                </p>
+              </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="column is-3">
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="fas fa-chart-simple fa-2x"></i>
+                </div>
+                <h3 class="title is-5" style="color: #1e3a2f">
+                  Yield Prediction
+                </h3>
+                <p class="has-text-grey">
+                  Forecast harvest volumes with data-driven models for planning.
+                </p>
+              </div>
+            </div>
+            <!-- Feature 4 -->
+            <div class="column is-3">
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="fas fa-chart-line fa-2x"></i>
+                </div>
+                <h3 class="title is-5" style="color: #1e3a2f">
+                  Market Advisory
+                </h3>
+                <p class="has-text-grey">
+                  Real-time market trends, price forecasts, and selling
+                  strategies.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REACH US + CONTACT FORM SECTION (Feel easy to reach us) -->
+      <section class="section">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-10">
+              <div class="contact-card p-5">
+                <div class="has-text-centered mb-5">
+                  <h2 class="title is-2 section-title" style="font-size: 2rem">
+                    Feel easy to reach us
+                  </h2>
+                  <p class="mt-4 is-size-5 has-text-grey-dark">
+                    Have questions about our Smart Agriculture Advisory System?
+                    Our team is here to help you understand how our platform can
+                    transform your agricultural operations. Whether you need
+                    technical support, want to learn more about our features, or
+                    have partnership inquiries, we’re just a message away.
+                  </p>
+                </div>
+
+                <div class="columns is-multiline is-vcentered">
+                  <div class="column is-5">
+                    <div
+                      class="notification is-light"
+                      style="background-color: #f1f9f0; border-radius: 28px"
+                    >
+                      <div class="media">
+                        <div class="media-left">
+                          <i
+                            class="fas fa-headset fa-3x"
+                            style="color: #2f855a"
+                          ></i>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-6">24/7 Support</p>
+                          <p class="has-text-grey">Response within 24 hours</p>
+                        </div>
+                      </div>
+                      <hr class="my-3" />
+                      <div class="media">
+                        <div class="media-left">
+                          <i
+                            class="fas fa-envelope fa-2x"
+                            style="color: #2f855a"
+                          ></i>
+                        </div>
+                        <div class="media-content">
+                          <p class="has-text-weight-bold">
+                            hello@agrismart.com
+                          </p>
+                          <p class="has-text-grey">+1 (555) 678 1234</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column is-7">
+                    <form method="post" action="#" id="contactForm">
+                      {% csrf_token %}
+                      <div class="field">
+                        <label class="label">Name</label>
+                        <div class="control">
+                          <input
+                            class="input input-custom"
+                            type="text"
+                            placeholder="Enter your name"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                          <input
+                            class="input input-custom"
+                            type="email"
+                            placeholder="Enter your email"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label class="label">Message</label>
+                        <div class="control">
+                          <textarea
+                            class="textarea textarea-custom"
+                            rows="3"
+                            placeholder="Enter your message"
+                          ></textarea>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <button class="button btn-send" type="submit">
+                            <i class="fas fa-paper-plane"></i> &nbsp; Send
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                    <p
+                      class="help has-text-success mt-2"
+                      id="formFeedback"
+                      style="display: none"
+                    >
+                      ✓ Message sent! We'll get back soon.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==================== FOOTER (exactly matching wireframe + extra style) ==================== -->
+    <footer class="footer footer-green" style="background-color: #1e3a2f">
+      <div class="container">
+        <div class="columns is-multiline has-text-centered">
+          <!-- Brand -->
+          <div class="column is-3">
+            <h2 class="title is-5 has-text-white">🌱 AgriSmart</h2>
+            <p class="has-text-weight-light">
+              Smart Agriculture Advisory System for modern farming solutions.
+            </p>
+          </div>
+
+          <!-- Links -->
+          <div class="column is-3">
+            <h3 class="title is-6 has-text-white mb-3">Links</h3>
+            <p><a class="has-text-white">Home</a></p>
+            <p><a class="has-text-white">About Us</a></p>
+            <p><a class="has-text-white">Features</a></p>
+            <p><a class="has-text-white">Contact</a></p>
+          </div>
+
+          <!-- Help & Support -->
+          <div class="column is-3">
+            <h3 class="title is-6 has-text-white mb-3">Help & Support</h3>
+            <p><a class="has-text-white">FAQ</a></p>
+            <p><a class="has-text-white">Documentation</a></p>
+            <p><a class="has-text-white">Support Center</a></p>
+            <p><a class="has-text-white">Privacy Policy</a></p>
+          </div>
+
+          <!-- Social Media -->
+          <div class="column is-3">
+            <h3 class="title is-6 has-text-white mb-3">Social Media</h3>
+            <div class="buttons is-left">
+              <a class="social-btn">
+                <span class="icon"><i class="fab fa-facebook-f"></i></span>
+              </a>
+              <a class="social-btn">
+                <span class="icon"><i class="fab fa-twitter"></i></span>
+              </a>
+              <a class="social-btn">
+                <span class="icon"><i class="fab fa-instagram"></i></span>
+              </a>
+              <a class="social-btn">
+                <span class="icon"><i class="fab fa-linkedin-in"></i></span>
+              </a>
+            </div>
+            <div class="mt-2">
+              <p class="has-text-white is-size-7">
+                Facebook &nbsp;|&nbsp; Instagram &nbsp;|&nbsp; LinkedIn
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <hr
+          class="has-background-grey-light"
+          style="background-color: #3f6b58"
+        />
+        <p class="has-text-centered has-text-white is-size-7">
+          © 2026 Smart Agriculture Advisory System. All rights reserved. | 🌾
+          Empowering farmers with AI
+        </p>
+      </div>
+    </footer>
+
+    <!-- JavaScript for burger menu and demo form feedback -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // navbar burger toggling
+        const burgers = document.querySelectorAll(".navbar-burger");
+        burgers.forEach((el) => {
+          el.addEventListener("click", () => {
+            const target = el.dataset.target;
+            const menu = document.getElementById(target);
+            el.classList.toggle("is-active");
+            if (menu) menu.classList.toggle("is-active");
+          });
+        });
+
+        // fake form submission feedback (no actual backend, just demo)
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+          contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const feedback = document.getElementById("formFeedback");
+            if (feedback) {
+              feedback.style.display = "block";
+              contactForm.reset();
+              setTimeout(() => {
+                feedback.style.display = "none";
+              }, 3000);
+            }
+          });
+        }
+      });
+    </script>
+
+    <!-- Additional inline for smoother scroll and minor style touches -->
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      .button,
+      .navbar-item {
+        transition: all 0.2s ease;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #eef6f0;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #2f855a;
+        border-radius: 10px;
+      }
+      .hero-garden img {
+        object-fit: cover;
+        background: #e0ecd9;
+      }
+    </style>
+  </body>
+</html>

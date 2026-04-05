@@ -27,3 +27,9 @@ def crop_recommendation_view(request):
         "form": form,
         "recommended_crop": recommended_crop
     })
+
+
+#from django.shortcuts import render
+
+def index(request):
+    return render(request, 'index.html')
