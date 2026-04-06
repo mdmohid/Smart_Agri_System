@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'advisory_system'
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,9 @@ ROOT_URLCONF = 'smart_agri_system.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'advisory_system/templates')],  #directory implementated
+        # 'DIRS': [os.path.join(BASE_DIR, 'advisory_system/templates')],  #directory implementated
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

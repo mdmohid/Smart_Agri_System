@@ -20,5 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('advisory_system/', include('advisory_system.urls')), #crop recommendation
+    # path('advisory_system/', include('advisory_system.urls')), #crop recommendation
+    path('', include('advisory_system.urls')),
 ]

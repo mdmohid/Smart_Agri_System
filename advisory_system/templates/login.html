@@ -1,0 +1,75 @@
+{% extends "base.html" %} {% load static %} {% block title %}Login | AgriSmart
+{% endblock %} {% block extra_css %}
+<style>
+  .auth-container {
+    max-width: 450px;
+    margin: 2rem auto;
+  }
+  .auth-card {
+    background: white;
+    border-radius: 2rem;
+    padding: 2rem;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.05);
+  }
+  .forgot-link {
+    text-align: right;
+    font-size: 0.9rem;
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="container">
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1 class="title is-3 has-text-centered" style="color: #1e3a2f">
+        Login to Your Account
+      </h1>
+      <p class="has-text-centered mb-5">
+        Welcome back! Please enter your login details below.
+      </p>
+
+      <form method="post" action="#">
+        {% csrf_token %}
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input
+              class="input"
+              type="email"
+              placeholder="Enter your email"
+              required
+              style="background: white; border-radius: 60px"
+            />
+          </div>
+          <p class="help">Your email will be used for account recovery.</p>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input
+              class="input"
+              type="password"
+              placeholder="Enter your password"
+              required
+              style="background: white; border-radius: 60px"
+            />
+          </div>
+          <p class="help">Make sure your password is strong.</p>
+        </div>
+        <div class="forgot-link">
+          <a href="#" style="color: #2f855a">Forgot Password?</a>
+        </div>
+        <button class="button btn-primary is-fullwidth mt-4" type="submit">
+          Login
+        </button>
+      </form>
+
+      <div class="has-text-centered mt-4">
+        <p>
+          Don't have an account?
+          <a href="{% url 'register' %}" style="color: #2f855a">Register</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

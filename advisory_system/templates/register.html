@@ -1,0 +1,92 @@
+{% extends "base.html" %} {% load static %} {% block title %}Register |
+AgriSmart{% endblock %} {% block extra_css %}
+<style>
+  .auth-container {
+    max-width: 500px;
+    margin: 2rem auto;
+  }
+  .auth-card {
+    background: white;
+    border-radius: 2rem;
+    padding: 2rem;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.05);
+  }
+  .auth-switch {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="container">
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1 class="title is-3 has-text-centered" style="color: #1e3a2f">
+        Register
+      </h1>
+      <p class="has-text-centered mb-5">Create your account to get started.</p>
+
+      <form method="post" action="#">
+        {% csrf_token %}
+        <div class="field">
+          <label class="label">Full Name</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Enter your full name"
+              required
+              style="background: white; border-radius: 60px"
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input
+              class="input"
+              type="email"
+              placeholder="Enter your email address"
+              required
+              style="background: white; border-radius: 60px"
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input
+              class="input"
+              type="password"
+              placeholder="Enter your password"
+              required
+              style="background: white; border-radius: 60px"
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Confirm Password</label>
+          <div class="control">
+            <input
+              class="input"
+              type="password"
+              placeholder="Confirm your password"
+              required
+              style="background: white; border-radius: 60px"
+            />
+          </div>
+        </div>
+        <button class="button btn-primary is-fullwidth" type="submit">
+          Register
+        </button>
+      </form>
+
+      <div class="auth-switch">
+        <p>
+          Already have an account?
+          <a href="{% url 'login' %}" style="color: #2f855a">Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

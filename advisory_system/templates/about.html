@@ -1,0 +1,135 @@
+{% extends "base.html" %} {% load static %} {% block title %}About Us |
+AgriSmart{% endblock %} {% block extra_css %}
+<style>
+  .about-hero {
+    background: linear-gradient(135deg, #eaf7e6 0%, #f8f9f2 100%);
+    border-radius: 0 0 2rem 2rem;
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+  }
+  .team-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+    height: 100%;
+  }
+  .team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px -12px rgba(47, 133, 90, 0.15);
+  }
+  .team-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    background: #eef6f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  .mission-vision {
+    background: #f1f9f0;
+    border-radius: 2rem;
+    padding: 2rem;
+  }
+</style>
+{% endblock %} {% block content %}
+<!-- Hero Section -->
+<section class="about-hero">
+  <div class="container has-text-centered">
+    <h1 class="title is-1" style="color: #1e3a2f">
+      About Smart Agriculture Advisory System
+    </h1>
+    <p
+      class="subtitle is-4 mt-3"
+      style="color: #3b5c4a; max-width: 800px; margin: 0 auto"
+    >
+      Revolutionizing farming through intelligent technology and data-driven
+      insights to help farmers make informed decisions.
+    </p>
+    <p class="mt-4 is-size-5" style="color: #2d5a45">
+      Our platform combines cutting-edge technology with agricultural expertise
+      to provide personalized recommendations for optimal crop management and
+      sustainable farming practices.
+    </p>
+  </div>
+</section>
+
+<!-- Our Team Section -->
+<section class="section">
+  <div class="container">
+    <h2
+      class="title is-2 has-text-centered section-title"
+      style="margin-bottom: 2rem"
+    >
+      Our Team
+    </h2>
+    <p class="has-text-centered mb-5 is-size-5">
+      Meet the experts behind our agricultural innovation
+    </p>
+    <div class="columns is-multiline">
+      <div class="column is-3">
+        <div class="team-card">
+          <div class="team-img">👩‍🌾</div>
+          <h3 class="title is-5">Dr. Sarah Johnson</h3>
+          <p class="has-text-grey">Lead Agronomist</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="team-card">
+          <div class="team-img">👨‍💻</div>
+          <h3 class="title is-5">Michael Chen</h3>
+          <p class="has-text-grey">AI Research Director</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="team-card">
+          <div class="team-img">👩‍🔬</div>
+          <h3 class="title is-5">Dr. Priya Patel</h3>
+          <p class="has-text-grey">Plant Pathologist</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="team-card">
+          <div class="team-img">🧑‍🌾</div>
+          <h3 class="title is-5">James O'Connor</h3>
+          <p class="has-text-grey">Field Operations</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <div class="column is-6">
+        <div class="mission-vision has-text-centered">
+          <i class="fas fa-bullseye fa-3x" style="color: #2f855a"></i>
+          <h3 class="title is-4 mt-3">Our Mission</h3>
+          <p class="has-text-grey-dark">
+            Smart Agriculture Advisory System for modern farming solutions –
+            empowering every farmer with accessible AI.
+          </p>
+        </div>
+      </div>
+      <div class="column is-6">
+        <div class="mission-vision has-text-centered">
+          <i class="fas fa-eye fa-3x" style="color: #2f855a"></i>
+          <h3 class="title is-4 mt-3">Our Vision</h3>
+          <p class="has-text-grey-dark">
+            A world where technology bridges the gap between traditional farming
+            and sustainable, high-yield agriculture.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

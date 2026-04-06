@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Features | AgriSmart{% endblock %}
+
+{% block extra_css %}
+<style>
+    .feature-page-card {
+        background: white;
+        border-radius: 2rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+        transition: 0.3s;
+        border: 1px solid #eef2e6;
+    }
+    .feature-page-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 30px -12px rgba(47,133,90,0.15);
+    }
+    .feature-icon-lg {
+        font-size: 3rem;
+        color: #2f855a;
+        margin-bottom: 1rem;
+    }
+    .quick-access-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+    .quick-btn {
+        background: #eef6f0;
+        border-radius: 60px;
+        padding: 0.7rem 1.5rem;
+        font-weight: 600;
+        color: #1e3a2f;
+        transition: 0.2s;
+    }
+    .quick-btn:hover {
+        background: #2f855a;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="has-text-centered mb-6">
+            <h1 class="title is-1" style="color: #1e3a2f;">Our Smart Agriculture Features</h1>
+            <p class="subtitle is-4 mt-3" style="color: #3b5c4a;">Empowering farmers with AI-powered tools to optimize crop production, detect diseases early, and make data-driven agricultural decisions.</p>
+        </div>
+
+        <!-- Crop Recommendation -->
+        <div class="feature-page-card columns is-vcentered">
+            <div class="column is-8">
+                <div class="feature-icon-lg"><i class="fas fa-seedling"></i></div>
+                <h2 class="title is-3">Crop Recommendation</h2>
+                <p class="is-size-5 has-text-grey-dark">Get personalized crop suggestions based on soil conditions, climate data, and local market trends for optimal yield.</p>
+                <a href="#" class="button btn-primary mt-4">Use Feature →</a>
+            </div>
+            <div class="column is-4 has-text-centered">
+                <img src="https://placehold.co/300x200/eef6f0/2f855a?text=Crop+AI" alt="Crop rec" style="border-radius: 1.5rem;">
+            </div>
+        </div>
+
+        <!-- Disease Detection -->
+        <div class="feature-page-card columns is-vcentered">
+            <div class="column is-8">
+                <div class="feature-icon-lg"><i class="fas fa-disease"></i></div>
+                <h2 class="title is-3">Disease Detection</h2>
+                <p class="is-size-5 has-text-grey-dark">Upload crop images to instantly identify diseases and pests with AI-powered analysis and treatment recommendations.</p>
+                <a href="#" class="button btn-primary mt-4">Use Feature →</a>
+            </div>
+            <div class="column is-4 has-text-centered">
+                <img src="https://placehold.co/300x200/eef6f0/2f855a?text=Disease+AI" alt="Disease" style="border-radius: 1.5rem;">
+            </div>
+        </div>
+
+        <!-- Yield Prediction -->
+        <div class="feature-page-card columns is-vcentered">
+            <div class="column is-8">
+                <div class="feature-icon-lg"><i class="fas fa-chart-line"></i></div>
+                <h2 class="title is-3">Yield Prediction</h2>
+                <p class="is-size-5 has-text-grey-dark">Forecast crop yields using historical data, weather patterns, and farming practices to plan harvest and sales.</p>
+                <a href="#" class="button btn-primary mt-4">Use Feature →</a>
+            </div>
+            <div class="column is-4 has-text-centered">
+                <img src="https://placehold.co/300x200/eef6f0/2f855a?text=Yield+Forecast" alt="Yield" style="border-radius: 1.5rem;">
+            </div>
+        </div>
+
+        <!-- Market Advisory -->
+        <div class="feature-page-card columns is-vcentered">
+            <div class="column is-8">
+                <div class="feature-icon-lg"><i class="fas fa-chart-simple"></i></div>
+                <h2 class="title is-3">Market Advisory</h2>
+                <p class="is-size-5 has-text-grey-dark">Access real-time market prices, demand forecasts, and optimal selling strategies to maximize profit margins.</p>
+                <a href="#" class="button btn-primary mt-4">Use Feature →</a>
+            </div>
+            <div class="column is-4 has-text-centered">
+                <img src="https://placehold.co/300x200/eef6f0/2f855a?text=Market+Data" alt="Market" style="border-radius: 1.5rem;">
+            </div>
+        </div>
+
+        <!-- Quick Access -->
+        <div class="has-text-centered mt-6">
+            <h3 class="title is-4">Quick Access</h3>
+            <div class="quick-access-buttons">
+                <a href="#" class="quick-btn">🌾 Crop Rec.</a>
+                <a href="#" class="quick-btn">🦠 Disease Det.</a>
+                <a href="#" class="quick-btn">📊 Yield Pred.</a>
+                <a href="#" class="quick-btn">📈 Market Adv.</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
