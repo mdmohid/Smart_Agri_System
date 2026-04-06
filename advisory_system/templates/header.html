@@ -67,13 +67,19 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a
+            <!-- <a
               class="button is-success is-light"
               href="{% url 'login' %}"
               style="border-radius: 40px; font-weight: 500"
               >Login</a
+            > -->
+            <button
+              class="button is-success is-light"
+              onclick="openModal('loginModal')"
             >
-            <a
+              Login
+            </button>
+            <!-- <a
               class="button is-success"
               href="{% url 'register' %}"
               style="
@@ -82,7 +88,13 @@
                 font-weight: 500;
               "
               >Register</a
+            > -->
+            <button
+              class="button is-success"
+              onclick="openModal('registerModal')"
             >
+              Register
+            </button>
           </div>
         </div>
       </div>

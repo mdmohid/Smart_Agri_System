@@ -2,7 +2,7 @@
 AgriSmart{% endblock %} {% block extra_css %}
 <style>
   .contact-hero {
-    background: linear-gradient(135deg, #eaf7e6, #f8f9f2);
+    /* background: linear-gradient(135deg, #eaf7e6, #f8f9f2); */
     border-radius: 0 0 2rem 2rem;
     padding: 3rem 0;
     text-align: center;
@@ -13,16 +13,81 @@ AgriSmart{% endblock %} {% block extra_css %}
     padding: 1.5rem;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
     height: 100%;
+    color: #1e3a2f;
   }
+  .info-card .title {
+    color: #1e3a2f;
+  }
+
   .map-placeholder {
     background: #e2e8f0;
     border-radius: 1.5rem;
-    height: 250px;
+    height: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #2f855a;
     font-weight: bold;
+  }
+
+  /* .contact-card {
+    background: white;
+    border-radius: 2rem;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+  } */
+
+  .info-card .label {
+    color: #1e3a2f !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .input,
+  .textarea {
+    border-radius: 60px;
+    border: 1px solid #e2e8f0;
+    padding: 0.9rem 1.2rem;
+    transition: all 0.2s;
+
+    background-color: #ffffff !important; /* Force white background */
+    color: #1a202c !important;
+  }
+
+  .input:focus,
+  .textarea:focus {
+    border-color: #2f855a;
+    box-shadow: 0 0 0 2px rgba(47, 133, 90, 0.2);
+
+    background-color: #ffffff !important;
+    color: #1a202c !important;
+  }
+
+  .textarea {
+    border-radius: 28px;
+  }
+
+  /* Also fix placeholder color */
+  .input::placeholder,
+  .textarea::placeholder {
+    color: #a0aec0 !important;
+  }
+
+  .btn-send {
+    background-color: #2f855a;
+    border-radius: 60px;
+    font-weight: 600;
+    padding: 0.8rem 2rem;
+    width: 100%;
+    color: white;
+    transition: all 0.2s;
+  }
+
+  .btn-send:hover {
+    background-color: #1f6e48;
+    transform: scale(0.98);
+    color: white;
   }
 </style>
 {% endblock %} {% block content %}
@@ -33,7 +98,7 @@ AgriSmart{% endblock %} {% block extra_css %}
       We're here to help you optimize your agricultural practices with smart
       technology solutions.
     </p>
-    <p class="is-size-5">
+    <p class="is-size-5" style="color: #3b5c4a">
       Have questions or need support? Our team is ready to assist you with
       expert advice and guidance.
     </p>
@@ -63,21 +128,22 @@ AgriSmart{% endblock %} {% block extra_css %}
                 class="fas fa-phone-alt"
                 style="color: #2f855a; width: 2rem"
               ></i>
-              <strong>Phone</strong><br />+1 (555) 123-4567
+              Phone<br />+977 9819965626
             </p>
             <p class="mt-3">
               <i
                 class="fas fa-envelope"
                 style="color: #2f855a; width: 2rem"
               ></i>
-              <strong>Email</strong><br />support@smartagri.com
+              Email<br />alammohid855@gmail.com
             </p>
             <p class="mt-3">
               <i
                 class="fas fa-map-marker-alt"
                 style="color: #2f855a; width: 2rem"
               ></i>
-              <strong>Location</strong><br />123 Agriculture Blvd, Suite 100
+              Headquarter<br />
+              The British College Kathmandu, Nepal
             </p>
           </div>
         </div>
@@ -132,10 +198,34 @@ AgriSmart{% endblock %} {% block extra_css %}
     </div>
 
     <!-- Map Placeholder -->
-    <div class="mt-6">
+    <!-- <div class="mt-6">
       <div class="map-placeholder">
         <i class="fas fa-map fa-2x mr-2"></i> Map Location Placeholder –
         Interactive Map Coming Soon
+      </div>
+    </div> -->
+    <!-- Real Map inside existing .map-placeholder -->
+    <div class="mt-6">
+      <div class="map-placeholder" style="overflow: hidden; padding: 0">
+        <!-- <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.317147571086!2d85.32358531506157!3d27.69366598278707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19a6a2c84e8d%3A0x5f6d8b2c4e5a6f8!2sKathmandu%2C%20Nepal!5e0!3m2!1sen!2snp!4v1699999999999!5m2!1sen!2snp"
+          width="100%"
+          height="100%"
+          style="border: 0; display: block"
+          allowfullscreen=""
+          loading="lazy"
+        >
+        </iframe> -->
+
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14131.101971916212!2d85.30045042187781!3d27.693332977204207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19b19295555f%3A0xabfe5f4b310f97de!2sThe%20British%20College%2C%20Kathmandu!5e0!3m2!1sen!2snp!4v1775496965715!5m2!1sen!2snp"
+          width="100%"
+          height="100%"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </div>
   </div>

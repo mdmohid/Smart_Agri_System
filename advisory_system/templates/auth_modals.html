@@ -1,0 +1,127 @@
+<!-- Register Modal -->
+<div id="registerModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Register</p>
+      <button
+        class="delete"
+        aria-label="close"
+        onclick="closeModal('registerModal')"
+      ></button>
+    </header>
+    <form method="post" action="{% url 'register' %}" id="registerForm">
+      {% csrf_token %}
+      <section class="modal-card-body">
+        <div class="field">
+          <label class="label">Full Name</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              name="name"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input
+              class="input"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input
+              class="input"
+              type="password"
+              name="password"
+              placeholder="Create a password"
+              required
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Confirm Password</label>
+          <div class="control">
+            <input
+              class="input"
+              type="password"
+              name="confirm_password"
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot" style="justify-content: flex-end">
+        <button
+          class="button"
+          type="button"
+          onclick="closeModal('registerModal')"
+        >
+          Cancel
+        </button>
+        <button class="button is-success" type="submit">Register</button>
+      </footer>
+    </form>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Login</p>
+      <button
+        class="delete"
+        aria-label="close"
+        onclick="closeModal('loginModal')"
+      ></button>
+    </header>
+    <form method="post" action="{% url 'login' %}" id="loginForm">
+      {% csrf_token %}
+      <section class="modal-card-body">
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input
+              class="input"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input
+              class="input"
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot" style="justify-content: flex-end">
+        <button class="button" type="button" onclick="closeModal('loginModal')">
+          Cancel
+        </button>
+        <button class="button is-success" type="submit">Login</button>
+      </footer>
+    </form>
+  </div>
+</div>

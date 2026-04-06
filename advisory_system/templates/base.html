@@ -58,6 +58,71 @@
         background: #2f855a;
         border-radius: 10px;
       }
+
+      /* Only green theme colors – no layout overrides */
+
+      .modal-card-head {
+        background-color: #f1f9f0;
+        border-bottom: 1px solid #2f855a;
+      }
+      .modal-card-head .modal-card-title {
+        color: #1e3a2f;
+      }
+      .modal-card-foot .button.is-success {
+        background-color: #2f855a;
+      }
+      .modal-card-foot .button.is-success:hover {
+        background-color: #1f6e48;
+      }
+
+      .modal-card-body {
+        background-color: #f1f9f0;
+        border-bottom: 1px solid #2f855a;
+      }
+
+      .modal-card-foot {
+        background-color: #f1f9f0;
+        border-bottom: 1px solid #2f855a;
+      }
+
+      /* .label {
+        color: #1e3a2f;
+      } */
+      .modal-card-body .label {
+        color: #1e3a2f;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+      }
+
+      .modal-card-body .input {
+        border-radius: 60px;
+        border: 1px solid #cbd5e0;
+        padding: 0.7rem 1.2rem;
+        background-color: white;
+        width: 100%;
+        color: #1e3a2f;
+      }
+
+      .modal-card-body .input:focus {
+        border-color: #2f855a;
+        box-shadow: 0 0 0 2px rgba(47, 133, 90, 0.2);
+        outline: none;
+      }
+
+      /* Also fix placeholder color */
+      .modal-card-body .input::placeholder {
+        color: #a0aec0 !important;
+      }
+
+      /* .modal,
+      .modal-background {
+        z-index: 1050;
+      } */
+
+      /* Ensure modal appears above header */
+      .modal {
+        z-index: 1050 !important;
+      }
     </style>
   </head>
   <body>
@@ -65,6 +130,42 @@
 
     <main>{% block content %} {% endblock %}</main>
 
-    {% include "footer.html" %} {% block extra_js %}{% endblock %}
+    <!-- ✅ ADD THIS -->
+    {% include 'auth_modals.html' %} {% include "footer.html" %}
+
+    <!-- ✅ GLOBAL JS HERE -->
+    <!-- <script>
+      function openModal(id) {
+        document.getElementById(id).classList.add("is-active");
+      }
+
+      function closeModal(id) {
+        document.getElementById(id).classList.remove("is-active");
+      }
+    </script> -->
+
+    {% block extra_js %}{% endblock %}
+    <script>
+      function openModal(id) {
+        document.getElementById(id).classList.add("is-active");
+      }
+
+      function closeModal(id) {
+        document.getElementById(id).classList.remove("is-active");
+      }
+
+      // Close modal when clicking outside (on background)
+      document.addEventListener("DOMContentLoaded", () => {
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach((modal) => {
+          const background = modal.querySelector(".modal-background");
+          if (background) {
+            background.addEventListener("click", () => {
+              modal.classList.remove("is-active");
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
