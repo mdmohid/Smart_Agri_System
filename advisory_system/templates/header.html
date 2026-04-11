@@ -66,36 +66,30 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
+          {% if user.is_authenticated %}
           <div class="buttons">
-            <!-- <a
-              class="button is-success is-light"
-              href="{% url 'login' %}"
-              style="border-radius: 40px; font-weight: 500"
-              >Login</a
-            > -->
-            <button
+            <span class="mr-3 has-text-weight-semibold">
+              👤 {{ user.username }}
+            </span>
+
+            <a class="button is-danger is-light" href="{% url 'logout' %}">
+              Logout
+            </a>
+          </div>
+
+          {% else %}
+          <div class="buttons">
+            <a
               class="button is-success is-light"
               onclick="openModal('loginModal')"
             >
               Login
-            </button>
-            <!-- <a
-              class="button is-success"
-              href="{% url 'register' %}"
-              style="
-                background-color: #2f855a;
-                border-radius: 40px;
-                font-weight: 500;
-              "
-              >Register</a
-            > -->
-            <button
-              class="button is-success"
-              onclick="openModal('registerModal')"
-            >
+            </a>
+            <a class="button is-success" onclick="openModal('registerModal')">
               Register
-            </button>
+            </a>
           </div>
+          {% endif %}
         </div>
       </div>
     </div>

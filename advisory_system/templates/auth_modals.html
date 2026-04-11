@@ -19,7 +19,7 @@
             <input
               class="input"
               type="text"
-              name="name"
+              name="username"
               placeholder="Enter your full name"
               required
             />
@@ -76,6 +76,10 @@
   </div>
 </div>
 
+
+
+
+
 <!-- Login Modal -->
 <div id="loginModal" class="modal">
   <div class="modal-background"></div>
@@ -92,13 +96,13 @@
       {% csrf_token %}
       <section class="modal-card-body">
         <div class="field">
-          <label class="label">Email</label>
+          <label class="label">Username</label>
           <div class="control">
             <input
               class="input"
-              type="email"
-              name="email"
-              placeholder="Enter your email"
+              type="text"
+              name="username"
+              placeholder="Enter your username"
               required
             />
           </div>

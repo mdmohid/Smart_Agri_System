@@ -1,0 +1,405 @@
+{% extends "base.html" %} {% load static %} {% block title %}Dashboard 
+{% endblock %} {% block extra_css %}
+<style>
+  /* Sidebar styling */
+  .sidebar {
+    background: #e7e1e1;
+    padding: 1rem;
+    height: 100%;
+    border-radius: 8px;
+  }
+  .menu-list a {
+    border-radius: 6px;
+    margin-bottom: 5px;
+  }
+  .menu-list a:hover,
+  .menu-list a.is-active {
+    background-color: #2f855a;
+    color: white;
+  }
+
+  /* Enhanced stat cards */
+  .stat-card {
+    transition: 0.3s;
+    border-radius: 1.2rem;
+    text-align: center;
+    padding: 1rem 0.5rem;
+    height: 100%;
+    background-color: #afe798;
+  }
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+  }
+  .stat-icon {
+    font-size: 2.2rem;
+    color: #2f855a;
+    margin-bottom: 0.5rem;
+  }
+  .stat-card .heading {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #0f130e;
+  }
+  .stat-card .title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #0e1a0f;
+    margin-top: 0.2rem;
+  }
+
+  /* Center the stats grid in a 2x2 layout */
+  .stats-centered {
+    display: flex;
+    justify-content: center;
+  }
+  .stats-grid-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 450px));
+    gap: 2.5rem;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  @media (max-width: 768px) {
+    .stats-grid-2x2 {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .columns .column {
+      margin-bottom: 1rem;
+    }
+  }
+</style>
+{% endblock %} {% block content %}
+<section class="section">
+  <div class="columns is-desktop">
+    <!-- SIDEBAR -->
+    <div class="column is-2">
+      <aside class="menu sidebar">
+        <p class="menu-label" style="color: black">Services</p>
+        <ul class="menu-list">
+          <!-- <li><a href="/crop/" class="is-active">🌾 Crop Recommendation</a></li> -->
+          <li>
+            <a onclick="openModal('cropModal')">🌾 Crop Recommendation</a>
+          </li>
+          <li>
+            <a onclick="openModal('yieldModal')">📈 Yield Prediction</a>
+          </li>
+          <li>
+            <a onclick="openModal('diseaseModal')">🦠 Disease Detection</a>
+          </li>
+          <!-- <li><a href="/disease/">🦠 Disease Detection</a></li> -->
+          <!-- <li><a href="/yield/">📈 Yield Prediction</a></li> -->
+          <li><a href="/market/">📊 Market Advisory</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- MAIN CONTENT – only welcome + 2x2 Quick Stats -->
+    <div class="column is-10">
+      <!-- Welcome row -->
+      <div class="mb-5">
+        <h1 class="title is-3" style="color: black">
+          Welcome, {{ user.username }}
+        </h1>
+        <p class="subtitle is-6" style="color: black">
+          Here's your AgriSmart dashboard overview
+        </p>
+      </div>
+
+      <!-- Quick Stats: centered 2x2 grid (two up, two bottom) -->
+      <h2 class="title is-5 mb-4 has-text-centered" style="color: black">
+        Quick Stats
+      </h2>
+      <div class="stats-centered">
+        <div class="stats-grid-2x2">
+          <div class="box stat-card">
+            <div class="stat-icon">🌾</div>
+            <p class="heading">Crop Recommendation</p>
+            <p class="title">{{ crop_count }}</p>
+          </div>
+          <div class="box stat-card">
+            <div class="stat-icon">📈</div>
+            <p class="heading">Yield Prediction</p>
+            <p class="title">{{ yield_count }}</p>
+          </div>
+          <div class="box stat-card">
+            <div class="stat-icon">🦠</div>
+            <p class="heading">Disease Checks</p>
+            <p class="title">{{ disease_count }}</p>
+          </div>
+          <div class="box stat-card">
+            <div class="stat-icon">📊</div>
+            <p class="heading">Market Advisory</p>
+            <p class="title">{{ market_count }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Crop Modal; -->
+<div class="modal" id="cropModal">
+  <div class="modal-background" onclick="closeModal('cropModal')"></div>
+
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Crop Recommendation</p>
+      <button class="delete" onclick="closeModal('cropModal')"></button>
+    </header>
+
+    <section class="modal-card-body">
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="crop" />
+
+        <div class="columns is-multiline">
+          <div class="column is-6">
+            <label class="label">Nitrogen</label>
+            <input
+              class="input"
+              type="number"
+              step="any"
+              name="nitrogen"
+              required
+            />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">Phosphorus</label>
+            <input
+              class="input"
+              type="number"
+              step="any"
+              name="phosphorus"
+              required
+            />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">Potassium</label>
+            <input
+              class="input"
+              type="number"
+              step="any"
+              name="potassium"
+              required
+            />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">Temperature</label>
+            <input
+              class="input"
+              type="number"
+              step="any"
+              name="temperature"
+              required
+            />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">Humidity</label>
+            <input
+              class="input"
+              type="number"
+              step="any"
+              name="humidity"
+              required
+            />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">pH</label>
+            <input class="input" type="number" step="any" name="ph" required />
+          </div>
+
+          <div class="column is-12">
+            <label class="label">Rainfall</label>
+            <input
+              class="input"
+              type="number"
+              step="any"
+              name="rainfall"
+              required
+            />
+          </div>
+        </div>
+
+        <button class="button is-success is-fullwidth mt-3">
+          Predict Crop
+        </button>
+      </form>
+
+      <!-- Result -->
+      {% if crop_result %}
+      <div class="notification is-success mt-4">
+        🌱 Recommended Crop: <strong>{{ crop_result }}</strong>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+</div>
+
+<!-- 📈 YIELD MODAL -->
+<div class="modal" id="yieldModal">
+  <div class="modal-background" onclick="closeModal('yieldModal')"></div>
+
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Yield Prediction</p>
+      <button class="delete" onclick="closeModal('yieldModal')"></button>
+    </header>
+
+    <section class="modal-card-body">
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="yield" />
+
+        <div class="columns is-multiline">
+          <div class="column is-6">
+            <label class="label">Area (Country)</label>
+            <input
+              class="input"
+              type="text"
+              name="area"
+              placeholder="Nepal"
+              required
+            />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">Crop</label>
+            <input
+              class="input"
+              type="text"
+              name="crop"
+              placeholder="rice / wheat"
+              required
+            />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">Year</label>
+            <input class="input" type="number" name="year" required />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">Average Rainfall</label>
+            <input
+              class="input"
+              type="number"
+              step="any"
+              name="average_rainfall"
+              required
+            />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">Pesticides (tonnes)</label>
+            <input
+              class="input"
+              type="number"
+              step="any"
+              name="pesticides_tonnes"
+              required
+            />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">Avg Temperature</label>
+            <input
+              class="input"
+              type="number"
+              step="any"
+              name="avg_temp"
+              required
+            />
+          </div>
+        </div>
+
+        <button class="button is-success is-fullwidth mt-3">
+          Predict Yield
+        </button>
+      </form>
+
+      <!-- RESULT -->
+      {% if yield_result %}
+      <div class="notification is-info mt-4">
+        📈 Predicted Yield: <strong>{{ yield_result }} hg/ha</strong>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+</div>
+
+<!-- 🦠 DISEASE MODAL -->
+<div class="modal" id="diseaseModal">
+  <div class="modal-background" onclick="closeModal('diseaseModal')"></div>
+
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Disease Detection</p>
+      <button class="delete" onclick="closeModal('diseaseModal')"></button>
+    </header>
+
+    <section class="modal-card-body">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="disease" />
+
+        <div class="field">
+          <label class="label">Upload Leaf Image</label>
+          <div class="control">
+            <input class="input" type="file" name="image" required />
+          </div>
+        </div>
+
+        <button class="button is-success is-fullwidth mt-3">
+          Detect Disease
+        </button>
+      </form>
+
+      <!-- RESULT -->
+      {% if disease_result %}
+      <div class="notification is-danger mt-4">
+        🦠 Detected: <strong>{{ disease_result }}</strong>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+</div>
+
+<script>
+  function openModal(id) {
+    document.getElementById(id).classList.add("is-active");
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove("is-active");
+  }
+</script>
+
+<!-- AUTO OPEN AFTER SUBMIT -->
+{% if active_modal == "crop" %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    openModal("cropModal");
+  });
+</script>
+{% endif %} {% if active_modal == "yield" %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    openModal("yieldModal");
+  });
+</script>
+{% endif %} {% if active_modal == "disease" %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    openModal("diseaseModal");
+  });
+</script>
+{% endif %} {% endblock %}

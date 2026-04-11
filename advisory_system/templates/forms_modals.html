@@ -1,0 +1,45 @@
+<div
+  id="cropModal"
+  class="modal {% if active_modal == 'crop' %}is-active{% endif %}"
+>
+  <div class="modal-background" onclick="closeModal('cropModal')"></div>
+
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">🌾 Crop Recommendation</p>
+      <button class="delete" onclick="closeModal('cropModal')"></button>
+    </header>
+
+    <section class="modal-card-body">
+      <!-- FORM -->
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="crop" />
+
+        <div class="field">
+          <label class="label">Nitrogen</label>
+          <input class="input" type="number" name="nitrogen" required />
+        </div>
+
+        <div class="field">
+          <label class="label">Phosphorus</label>
+          <input class="input" type="number" name="phosphorus" required />
+        </div>
+
+        <div class="field">
+          <label class="label">Potassium</label>
+          <input class="input" type="number" name="potassium" required />
+        </div>
+
+        <button class="button is-success is-fullwidth">Predict Crop</button>
+      </form>
+
+      <!-- RESULT -->
+      {% if crop_result %}
+      <div class="notification is-success mt-4">
+        🌾 Recommended Crop: <strong>{{ crop_result }}</strong>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+</div>

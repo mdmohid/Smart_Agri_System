@@ -223,3 +223,37 @@
 also one thing cannot i use font where just pasted the icons
 
 <!-- href="{% url 'register' %}" -->
+
+<!-- header rightside -->
+
+<div class="navbar-end">
+  <div class="navbar-item">
+    <div class="buttons">
+      <!-- <a
+        class="button is-success is-light"
+        href="{% url 'login' %}"
+        style="border-radius: 40px; font-weight: 500"
+        >Login</a
+      > -->
+      <button
+        class="button is-success is-light"
+        onclick="openModal('loginModal')"
+      >
+        Login
+      </button>
+      <!-- <a
+        class="button is-success"
+        href="{% url 'register' %}"
+        style="
+          background-color: #2f855a;
+          border-radius: 40px;
+          font-weight: 500;
+        "
+        >Register</a
+      > -->
+      <button class="button is-success" onclick="openModal('registerModal')">
+        Register
+      </button>
+    </div>
+  </div>
+</div>
