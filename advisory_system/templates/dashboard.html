@@ -89,9 +89,12 @@
           <li>
             <a onclick="openModal('diseaseModal')">🦠 Disease Detection</a>
           </li>
+          <li>
+            <a onclick="openModal('marketModal')">📊 Market Advisory</a>
+          </li>
           <!-- <li><a href="/disease/">🦠 Disease Detection</a></li> -->
           <!-- <li><a href="/yield/">📈 Yield Prediction</a></li> -->
-          <li><a href="/market/">📊 Market Advisory</a></li>
+          <!-- <li><a href="/market/">📊 Market Advisory</a></li> -->
         </ul>
       </aside>
     </div>
@@ -372,6 +375,85 @@
   </div>
 </div>
 
+<!-- 📊 MARKET MODAL -->
+<div class="modal" id="marketModal">
+  <div class="modal-background" onclick="closeModal('marketModal')"></div>
+
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Market Advisory</p>
+      <button class="delete" onclick="closeModal('marketModal')"></button>
+    </header>
+
+    <section class="modal-card-body">
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="market" />
+
+        <div class="columns is-multiline">
+          <div class="column is-6">
+            <label class="label">Year</label>
+            <input class="input" type="number" name="year" required />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">Month</label>
+            <input class="input" type="number" name="month" required />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">Crop</label>
+            <input
+              class="input"
+              type="text"
+              name="crop"
+              placeholder="rice"
+              required
+            />
+          </div>
+
+          <div class="column is-6">
+            <label class="label">Market</label>
+            
+            <select name="market" class="input">
+              <option value="kalimati">Kalimati</option>
+              <option value="kathmandu">Kathmandu</option>
+              <option value="hetauda">Hetauda</option>
+              <option value="biratnagar">Biratnagar</option>
+            </select>
+          </div>
+
+          <div class="column is-12">
+            <label class="label">Country</label>
+            <select name = "country" class="input">
+              <option value="nepal">Nepal</option>
+            </select>
+            <!-- <input
+              class="input"
+              type="text"
+              name="country"
+              placeholder="Nepal"
+              required
+            /> -->
+            
+          </div>
+        </div>
+
+        <button class="button is-success is-fullwidth mt-3">
+          Predict Price
+        </button>
+      </form>
+
+      <!-- RESULT -->
+      {% if market_result %}
+      <div class="notification is-warning mt-4">
+        💰 Predicted Price: <strong>{{ market_result }} NPR/kg</strong>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+</div>
+
 <script>
   function openModal(id) {
     document.getElementById(id).classList.add("is-active");
@@ -400,6 +482,12 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     openModal("diseaseModal");
+  });
+</script>
+{% endif %} {% if active_modal == "market" %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    openModal("marketModal");
   });
 </script>
 {% endif %} {% endblock %}

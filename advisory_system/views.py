@@ -192,7 +192,28 @@ def features(request):
     return render(request, 'features.html')
 
 #contact us
+# def contact(request):
+#     return render(request, 'contact.html')
+
+from .models import ContactMessage
+from django.contrib import messages
+
 def contact(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        message = request.POST.get("message")
+
+        # Save to DB
+        ContactMessage.objects.create(
+            name=name,
+            email=email,
+            message=message
+        )
+
+        messages.success(request, "Message sent successfully!")
+        return redirect('contact')
+
     return render(request, 'contact.html')
 
 
@@ -329,12 +350,14 @@ from .models import CropRecommendation, YieldPrediction, DiseaseDetection, Marke
 from ml_models.crop_recommendation.predictor import predict_crop
 from ml_models.yield_prediction.predictor import predict_yield
 from ml_models.disease_detection.predictor import predict_disease
+from ml_models.market_prediction.predictor import predict_price
 
 @login_required
 def dashboard(request):
     crop_result = None  
     yield_result = None
     disease_result = None
+    market_result = None
     active_modal = None
 
     if request.method == "POST":
@@ -400,6 +423,7 @@ def dashboard(request):
             active_modal = "yield"
 
 
+        #disease detection
         elif form_type == "disease":
         
             uploaded_image = request.FILES.get("image")
@@ -421,6 +445,27 @@ def dashboard(request):
         
             active_modal = "disease"
 
+        #market price prediction
+        elif form_type == "market":
+            year = int(request.POST.get("year"))
+            month = int(request.POST.get("month"))
+            crop = request.POST.get("crop")
+            market = request.POST.get("market")
+            country = request.POST.get("country")
+        
+            market_result = predict_price(year, month, crop, market, country)
+        
+            MarketPrediction.objects.create(
+                user=request.user,
+                year=year,
+                month=month,
+                crop=crop,
+                market=market,
+                country=country,
+                predicted_price=market_result
+            )
+        
+            active_modal = "market"
 
 
 
@@ -430,6 +475,7 @@ def dashboard(request):
         'crop_result': crop_result,
         'yield_result': yield_result,
         'disease_result': disease_result,
+        'market_result': market_result,
         'active_modal': active_modal,
         'crop_count': CropRecommendation.objects.filter(user=request.user).count(),
         'yield_count': YieldPrediction.objects.filter(user=request.user).count(),

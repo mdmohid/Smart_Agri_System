@@ -176,7 +176,7 @@ Smart Agriculture Advisory System{% endblock %} {% block extra_css %}
         </h1>
         <p class="subtitle is-5 mt-4" style="color: #3b5c4a; max-width: 90%">
           Leverage cutting-edge AI to get data-driven insights, crop
-          recommendations, disease prediction, yield forecasts and price
+          recommendations, disease detection, yield forecasts and price
           prediction — all tailored for modern farming.
         </p>
         <div class="mt-5">
@@ -200,14 +200,14 @@ Smart Agriculture Advisory System{% endblock %} {% block extra_css %}
         </div>
         <div class="mt-5">
           <p class="has-text-grey-dark">
-            <i class="fas fa-users"></i> Join thousands of farmers already
+            <i class="fas fa-users"></i> Join, thousands of farmers already
             transforming agriculture
           </p>
         </div>
       </div>
       <div class="column is-5 has-text-centered">
         <img
-          src="https://placehold.co/500x400/eef6f0/2f855a?text=🌾+Agri+Analytics"
+          src="../static/images/intro.jpg"
           alt="Smart farming illustration"
           style="
             max-width: 100%;
@@ -241,15 +241,22 @@ Smart Agriculture Advisory System{% endblock %} {% block extra_css %}
             sustainability.
             <br /><br />
 
-            Join thousands of farmers who are already transforming their
+            Join, thousands of farmers who are already transforming their
             agricultural practices with our intelligent advisory platform.
           </p>
         </div>
         <div class="column is-3 has-text-centered">
-          <i
+          <!-- <i
             class="fas fa-chart-line"
             style="font-size: 4rem; color: #2f855a"
-          ></i>
+          ></i> -->
+          <a
+            class="navbar-item has-text-weight-bold is-size-2"
+            href="/"
+            style="color: #1e3a2f"
+          >
+            🌱 AgriSmart
+          </a>
         </div>
       </div>
     </div>
@@ -320,6 +327,12 @@ Smart Agriculture Advisory System{% endblock %} {% block extra_css %}
 
 <!-- Contact Section -->
 <section class="section">
+  {% if messages %} {% for message in messages %}
+  <div class="notification is-success">
+    <button class="delete"></button>
+    {{ message }}
+  </div>
+  {% endfor %} {% endif %}
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-10">
@@ -365,7 +378,7 @@ Smart Agriculture Advisory System{% endblock %} {% block extra_css %}
               </div>
             </div>
             <div class="column is-7">
-              <form method="post" action="#" id="contactForm">
+              <form method="post" action="{% url 'contact' %}" id="contactForm">
                 {% csrf_token %}
                 <div class="field">
                   <label class="label">Name</label>
@@ -373,6 +386,7 @@ Smart Agriculture Advisory System{% endblock %} {% block extra_css %}
                     <input
                       class="input input-custom"
                       type="text"
+                      name="name"
                       placeholder="Enter your name"
                       required
                     />
@@ -384,6 +398,7 @@ Smart Agriculture Advisory System{% endblock %} {% block extra_css %}
                     <input
                       class="input input-custom"
                       type="email"
+                      name="email"
                       placeholder="Enter your email"
                       required
                     />
@@ -394,27 +409,17 @@ Smart Agriculture Advisory System{% endblock %} {% block extra_css %}
                   <div class="control">
                     <textarea
                       class="textarea textarea-custom"
+                      name="message"
                       rows="3"
                       placeholder="Enter your message"
                       required
                     ></textarea>
                   </div>
                 </div>
-                <div class="field">
-                  <div class="control">
-                    <button class="button btn-send" type="submit">
-                      <i class="fas fa-paper-plane"></i> &nbsp; Send
-                    </button>
-                  </div>
-                </div>
+                <button class="button btn-send" type="submit">
+                  Send Message
+                </button>
               </form>
-              <p
-                class="help has-text-success mt-2"
-                id="formFeedback"
-                style="display: none"
-              >
-                ✓ Message sent! We'll get back soon.
-              </p>
             </div>
           </div>
         </div>
@@ -423,7 +428,7 @@ Smart Agriculture Advisory System{% endblock %} {% block extra_css %}
   </div>
 </section>
 {% endblock %} {% block extra_js %}
-<script>
+<!-- <script>
   document.addEventListener("DOMContentLoaded", () => {
     // Form submission handling
     const contactForm = document.getElementById("contactForm");
@@ -440,6 +445,17 @@ Smart Agriculture Advisory System{% endblock %} {% block extra_css %}
         }
       });
     }
+  });
+</script> -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".notification .delete").forEach(($delete) => {
+      const $notification = $delete.parentNode;
+
+      $delete.addEventListener("click", () => {
+        $notification.remove();
+      });
+    });
   });
 </script>
 {% endblock %}

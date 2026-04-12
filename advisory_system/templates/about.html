@@ -25,7 +25,7 @@ AgriSmart{% endblock %} {% block extra_css %}
     transform: translateY(-5px);
     box-shadow: 0 20px 30px -12px rgba(47, 133, 90, 0.15);
   }
-  .team-img {
+  /* .team-img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -36,7 +36,35 @@ AgriSmart{% endblock %} {% block extra_css %}
     align-items: center;
     justify-content: center;
     font-size: 3rem;
+  } */
+
+  /* .team-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  } */
+
+  .team-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background: #eef6f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* ensures image stays inside circle */
   }
+
+  .team-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* makes image cover the circle without distortion */
+    display: block;
+    
+  }
+
   .mission-vision {
     background: #f1f9f0;
     border-radius: 2rem;
@@ -82,29 +110,31 @@ AgriSmart{% endblock %} {% block extra_css %}
     <div class="columns is-multiline">
       <div class="column is-3">
         <div class="team-card">
-          <div class="team-img">👩‍🌾</div>
-          <h3 class="title is-5">Dr. Sarah Johnson</h3>
+          <div class="team-img">
+            <img src="../static/images/prabesh.png" alt="prabesh" />
+          </div>
+          <h3 class="title is-5">Dr. Prabesh Shah</h3>
           <p class="has">Lead Agronomist</p>
         </div>
       </div>
       <div class="column is-3">
         <div class="team-card">
-          <div class="team-img">👨‍💻</div>
-          <h3 class="title is-5">Michael Chen</h3>
+          <div class="team-img"><img src="../static/images/avhi.jpg" alt="Abhishek Shah"></div>
+          <h3 class="title is-5">Avhee Shah</h3>
           <p class="has">AI Research Director</p>
         </div>
       </div>
       <div class="column is-3">
         <div class="team-card">
-          <div class="team-img">👩‍🔬</div>
-          <h3 class="title is-5">Dr. Priya Patel</h3>
+          <div class="team-img"><img src="../static/images/sampurna.jpg" alt="sampurna"></div>
+          <h3 class="title is-5">Dr. Sampurna Gautam</h3>
           <p class="has">Plant Pathologist</p>
         </div>
       </div>
       <div class="column is-3">
         <div class="team-card">
-          <div class="team-img">🧑‍🌾</div>
-          <h3 class="title is-5">James O'Connor</h3>
+          <div class="team-img"><img src="../static/images/roshan.jpg" alt="roshan"></div>
+          <h3 class="title is-5">Roshan Chaudhary</h3>
           <p class="has">Field Operations</p>
         </div>
       </div>
