@@ -458,4 +458,118 @@ Smart Agriculture Advisory System{% endblock %} {% block extra_css %}
     });
   });
 </script>
-{% endblock %}
+
+{% if login_error %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    openModal("loginModal");
+    var errorDiv = document.createElement("div");
+    errorDiv.className = "notification is-danger";
+    errorDiv.innerHTML = '<button class="delete"></button> {{ login_error }}';
+    document.querySelector("#loginModal .modal-card-body").prepend(errorDiv);
+  });
+</script>
+{% endif %} {% if register_error %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    openModal("registerModal");
+    var errorDiv = document.createElement("div");
+    errorDiv.className = "notification is-danger";
+    errorDiv.innerHTML =
+      '<button class="delete"></button> {{ register_error }}';
+    document.querySelector("#registerModal .modal-card-body").prepend(errorDiv);
+  });
+</script>
+{% endif %} {% if show_otp_modal %}
+<div id="otpSuccessMsg" style="display: none">{{ otp_success|default:"" }}</div>
+<div id="otpErrorMsg" style="display: none">{{ otp_error|default:"" }}</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    openModal("otpModal");
+    var successMsg = document.getElementById("otpSuccessMsg").innerText;
+    var errorMsg = document.getElementById("otpErrorMsg").innerText;
+    if (successMsg) {
+      var successDiv = document.createElement("div");
+      successDiv.className = "notification is-success";
+      successDiv.innerHTML = '<button class="delete"></button> ' + successMsg;
+      document.querySelector("#otpModal .modal-card-body").prepend(successDiv);
+    }
+    if (errorMsg) {
+      var errorDiv = document.createElement("div");
+      errorDiv.className = "notification is-danger";
+      errorDiv.innerHTML = '<button class="delete"></button> ' + errorMsg;
+      document.querySelector("#otpModal .modal-card-body").prepend(errorDiv);
+    }
+  });
+</script>
+{% endif %}
+<script>
+  // Check if URL contains reset token and open modal
+  window.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const uidb64 = urlParams.get("uidb64");
+    const token = urlParams.get("token");
+    if (uidb64 && token) {
+      document.getElementById("resetUidb64").value = uidb64;
+      document.getElementById("resetToken").value = token;
+      openModal("resetPasswordModal");
+      // Remove params from URL without reloading
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, newUrl);
+    }
+  });
+</script>
+{% if reset_success %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    openModal("forgotPasswordModal");
+    var div = document.createElement("div");
+    div.className = "notification is-success";
+    div.innerHTML = '<button class="delete"></button> {{ reset_success }}';
+    document
+      .querySelector("#forgotPasswordModal .modal-card-body")
+      .prepend(div);
+  });
+</script>
+{% endif %} {% if reset_error %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    openModal("forgotPasswordModal");
+    var div = document.createElement("div");
+    div.className = "notification is-danger";
+    div.innerHTML = '<button class="delete"></button> {{ reset_error }}';
+    document
+      .querySelector("#forgotPasswordModal .modal-card-body")
+      .prepend(div);
+  });
+</script>
+{% endif %}
+<div id="resetStepValue" style="display: none">{{ reset_step }}</div>
+<div id="resetErrorMsg" style="display: none">{{ reset_error|default:"" }}</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var step = document.getElementById("resetStepValue").innerText;
+    var errorMsg = document.getElementById("resetErrorMsg").innerText;
+    if (step === "2") {
+      openModal("forgotPasswordModal");
+      document.getElementById("forgotStep1").style.display = "none";
+      document.getElementById("forgotStep2").style.display = "block";
+      if (errorMsg) {
+        var div = document.createElement("div");
+        div.className = "notification is-danger";
+        div.innerHTML = '<button class="delete"></button> ' + errorMsg;
+        document
+          .querySelector("#forgotPasswordModal .modal-card-body")
+          .prepend(div);
+      }
+    }
+  });
+</script>
+{% if open_login_modal %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    openModal("loginModal");
+  });
+</script>
+{% endif %} {% endblock %}

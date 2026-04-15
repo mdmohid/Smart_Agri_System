@@ -117,11 +117,28 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+# class Profile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     # email = models.EmailField(unique=True)
+#     phone = models.CharField(max_length=15, blank=True)
+#     role = models.CharField(default='farmer', max_length=10)
+
+#     def __str__(self):
+#         return self.user.username
+
+
+from django.contrib.auth.models import User
+from django.db import models
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # email = models.EmailField(unique=True)
+
     phone = models.CharField(max_length=15, blank=True)
     role = models.CharField(default='farmer', max_length=10)
+
+    # OTP SYSTEM
+    otp = models.CharField(max_length=6, blank=True, null=True)
+    is_verified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

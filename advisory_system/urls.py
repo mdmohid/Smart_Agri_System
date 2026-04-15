@@ -28,4 +28,17 @@ urlpatterns = [
 
     #farmer dashboard
     path('dashboard/', views.dashboard, name='dashboard'),
+
+    path('verify-otp/', views.verify_otp, name='verify_otp'),
+
+    path('dashboard/history/<str:type>/', views.history_view, name='history'),
+
+    # path('reset-password/', views.password_reset_confirm, name='password_reset_confirm'),
+    # path('reset-password/<str:uidb64>/<str:token>/', views.password_reset_confirm, name='password_reset_confirm_link'),
+    path('password-reset-request/', views.password_reset_request, name='password_reset_request'),
+    path('reset-password/', views.password_reset_confirm, name='password_reset_confirm'),
+    path('reset-password/<str:uidb64>/<str:token>/', views.password_reset_confirm, name='password_reset_confirm_link'),
+
+    path('send-reset-code/', views.send_reset_code, name='send_reset_code'),
+    path('verify-reset-code/', views.verify_reset_code, name='verify_reset_code'),
 ]

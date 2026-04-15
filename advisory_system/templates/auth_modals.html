@@ -76,10 +76,6 @@
   </div>
 </div>
 
-
-
-
-
 <!-- Login Modal -->
 <div id="loginModal" class="modal">
   <div class="modal-background"></div>
@@ -119,6 +115,17 @@
             />
           </div>
         </div>
+        <div class="has-text-right mt-2">
+          <a
+            href="#"
+            onclick="
+              openModal('forgotPasswordModal');
+              return false;
+            "
+            style="color: #2f855a"
+            >Forgot Password?</a
+          >
+        </div>
       </section>
       <footer class="modal-card-foot" style="justify-content: flex-end">
         <button class="button" type="button" onclick="closeModal('loginModal')">
@@ -127,5 +134,289 @@
         <button class="button is-success" type="submit">Login</button>
       </footer>
     </form>
+  </div>
+</div>
+
+<!-- OTP Modal -->
+<!-- <div id="otpModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">OTP Verification</p>
+      <button
+        class="delete"
+        aria-label="close"
+        onclick="closeModal('otpModal')"
+      ></button>
+    </header>
+    <form method="POST" action="{% url 'verify_otp' %}" id="otpForm">
+      {% csrf_token %}
+      <section class="modal-card-body">
+        <div class="field">
+          <label class="label">Enter OTP</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              name="otp"
+              placeholder="Enter OTP"
+              required
+            />
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button" type="button" onclick="closeModal('otpModal')">
+          Cancel
+        </button>
+        <button class="button is-success" type="submit">Verify OTP</button>
+      </footer>
+    </form>
+  </div>
+</div> -->
+
+<div id="otpModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">OTP Verification</p>
+      <button
+        class="delete"
+        aria-label="close"
+        onclick="closeModal('otpModal')"
+      ></button>
+    </header>
+    <form method="post" action="{% url 'verify_otp' %}">
+      {% csrf_token %}
+      <section class="modal-card-body">
+        <div class="field">
+          <label class="label">Enter OTP</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              name="otp"
+              placeholder="Enter OTP"
+              required
+            />
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button" type="button" onclick="closeModal('otpModal')">
+          Cancel
+        </button>
+        <button class="button is-success" type="submit">Verify OTP</button>
+      </footer>
+    </form>
+  </div>
+</div>
+
+<!-- Forgot Password Modal (Request) -->
+<!-- <div id="forgotPasswordModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Reset Password</p>
+      <button
+        class="delete"
+        onclick="closeModal('forgotPasswordModal')"
+      ></button>
+    </header>
+    <form method="post" action="{% url 'password_reset_request' %}">
+      {% csrf_token %}
+      <section class="modal-card-body">
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input
+              class="input"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+        </div>
+        <p class="help">We'll send you a link to reset your password.</p>
+      </section>
+      <footer class="modal-card-foot" style="justify-content: flex-end">
+        <button
+          class="button"
+          type="button"
+          onclick="closeModal('forgotPasswordModal')"
+        >
+          Cancel
+        </button>
+        <button class="button is-success" type="submit">Send reset link</button>
+      </footer>
+    </form>
+  </div>
+</div> -->
+
+<!-- Reset Password Modal (Enter new password) -->
+<div id="resetPasswordModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Set New Password</p>
+      <button
+        class="delete"
+        onclick="closeModal('resetPasswordModal')"
+      ></button>
+    </header>
+    <form
+      method="post"
+      action="{% url 'password_reset_confirm' %}"
+      id="resetPasswordForm"
+    >
+      {% csrf_token %}
+      <input type="hidden" name="uidb64" id="resetUidb64" />
+      <input type="hidden" name="token" id="resetToken" />
+      <section class="modal-card-body">
+        <div class="field">
+          <label class="label">New Password</label>
+          <div class="control">
+            <input
+              class="input"
+              type="password"
+              name="password"
+              placeholder="Enter new password"
+              required
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Confirm Password</label>
+          <div class="control">
+            <input
+              class="input"
+              type="password"
+              name="confirm_password"
+              placeholder="Confirm new password"
+              required
+            />
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot" style="justify-content: flex-end">
+        <button
+          class="button"
+          type="button"
+          onclick="closeModal('resetPasswordModal')"
+        >
+          Cancel
+        </button>
+        <button class="button is-success" type="submit">Reset Password</button>
+      </footer>
+    </form>
+  </div>
+</div>
+
+<!-- Forgot Password Modal (Step 1: Request code) -->
+<div id="forgotPasswordModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Reset Password</p>
+      <button
+        class="delete"
+        onclick="closeModal('forgotPasswordModal')"
+      ></button>
+    </header>
+    <!-- <div id="forgotStep1">
+      <form method="post" action="{% url 'send_reset_code' %}">
+        {% csrf_token %}
+        <section class="modal-card-body">
+          <div class="field">
+            <label class="label">Email</label>
+            <input class="input" type="email" name="email" required />
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button
+            class="button"
+            type="button"
+            onclick="closeModal('forgotPasswordModal')"
+          >
+            Cancel
+          </button>
+          <button class="button is-success" type="submit">Send Code</button>
+        </footer>
+      </form>
+    </div> -->
+    <div id="forgotStep1">
+      <form method="post" action="{% url 'send_reset_code' %}">
+        {% csrf_token %}
+        <section class="modal-card-body">
+          <div class="field">
+            <label class="label">Email</label>
+            <input class="input" type="email" name="email" required />
+          </div>
+          <div class="field">
+            <label class="label">Username</label>
+            <input
+              class="input"
+              type="text"
+              name="username"
+              placeholder="Your username"
+              required
+            />
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button
+            class="button"
+            type="button"
+            onclick="closeModal('forgotPasswordModal')"
+          >
+            Cancel
+          </button>
+          <button class="button is-success" type="submit">Send Code</button>
+        </footer>
+      </form>
+    </div>
+    <div id="forgotStep2" style="display: none">
+      <form method="post" action="{% url 'verify_reset_code' %}">
+        {% csrf_token %}
+        <section class="modal-card-body">
+          <div class="field">
+            <label class="label">Enter Code</label>
+            <input
+              class="input"
+              type="text"
+              name="code"
+              placeholder="6-digit code"
+              required
+            />
+          </div>
+          <div class="field">
+            <label class="label">New Password</label>
+            <input class="input" type="password" name="password" required />
+          </div>
+          <div class="field">
+            <label class="label">Confirm Password</label>
+            <input
+              class="input"
+              type="password"
+              name="confirm_password"
+              required
+            />
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button
+            class="button"
+            type="button"
+            onclick="closeModal('forgotPasswordModal')"
+          >
+            Cancel
+          </button>
+          <button class="button is-success" type="submit">
+            Reset Password
+          </button>
+        </footer>
+      </form>
+    </div>
   </div>
 </div>

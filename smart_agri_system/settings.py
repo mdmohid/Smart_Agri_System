@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'advisory_system'
+    'advisory_system.apps.AdvisorySystemConfig',
+
+    # 'advisory_system'
 ]
 
 MIDDLEWARE = [
@@ -140,3 +142,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #farmer dashboard settings authentication
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
+
+
+#Email Configuration 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'alammohid855@gmail.com'        # my gmail
+EMAIL_HOST_PASSWORD = 'yzigxfreboagfrlk'       # app password
+
+DEFAULT_FROM_EMAIL = f'AgriSmart <{EMAIL_HOST_USER}>'

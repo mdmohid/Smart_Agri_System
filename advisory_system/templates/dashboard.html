@@ -116,7 +116,7 @@
         Quick Stats
       </h2>
       <div class="stats-centered">
-        <div class="stats-grid-2x2">
+        <!-- <div class="stats-grid-2x2">
           <div class="box stat-card">
             <div class="stat-icon">🌾</div>
             <p class="heading">Crop Recommendation</p>
@@ -137,6 +137,28 @@
             <p class="heading">Market Advisory</p>
             <p class="title">{{ market_count }}</p>
           </div>
+        </div> -->
+        <div class="stats-grid-2x2">
+          <div class="box stat-card" onclick="showHistory('crop')">
+            <div class="stat-icon">🌾</div>
+            <p class="heading">Crop Recommendation</p>
+            <p class="title">{{ crop_count }}</p>
+          </div>
+          <div class="box stat-card" onclick="showHistory('yield')">
+            <div class="stat-icon">📈</div>
+            <p class="heading">Yield Prediction</p>
+            <p class="title">{{ yield_count }}</p>
+          </div>
+          <div class="box stat-card" onclick="showHistory('disease')">
+            <div class="stat-icon">🦠</div>
+            <p class="heading">Disease Checks</p>
+            <p class="title">{{ disease_count }}</p>
+          </div>
+          <div class="box stat-card" onclick="showHistory('market')">
+            <div class="stat-icon">📊</div>
+            <p class="heading">Market Advisory</p>
+            <p class="title">{{ market_count }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -152,7 +174,12 @@
       <p class="modal-card-title">Crop Recommendation</p>
       <button class="delete" onclick="closeModal('cropModal')"></button>
     </header>
-
+    {% if crop_error %}
+    <div class="notification is-danger">
+      <button class="delete"></button>
+      <strong>⚠️ Error:</strong> {{ crop_error }}
+    </div>
+    {% endif %}
     <section class="modal-card-body">
       <form method="POST">
         {% csrf_token %}
@@ -255,7 +282,12 @@
       <p class="modal-card-title">Yield Prediction</p>
       <button class="delete" onclick="closeModal('yieldModal')"></button>
     </header>
-
+    {% if yield_error %}
+    <div class="notification is-danger">
+      <button class="delete"></button>
+      <strong>⚠️ Error:</strong> {{ yield_error }}
+    </div>
+    {% endif %}
     <section class="modal-card-body">
       <form method="POST">
         {% csrf_token %}
@@ -348,6 +380,12 @@
       <button class="delete" onclick="closeModal('diseaseModal')"></button>
     </header>
 
+    {% if disease_error %}
+    <div class="notification is-danger">
+      <button class="delete"></button>
+      <strong>⚠️ Error:</strong> {{ disease_error }}
+    </div>
+    {% endif %}
     <section class="modal-card-body">
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -385,6 +423,12 @@
       <button class="delete" onclick="closeModal('marketModal')"></button>
     </header>
 
+    {% if market_error %}
+    <div class="notification is-danger">
+      <button class="delete"></button>
+      <strong>⚠️ Error:</strong> {{ market_error }}
+    </div>
+    {% endif %}
     <section class="modal-card-body">
       <form method="POST">
         {% csrf_token %}
@@ -414,7 +458,7 @@
 
           <div class="column is-6">
             <label class="label">Market</label>
-            
+
             <select name="market" class="input">
               <option value="kalimati">Kalimati</option>
               <option value="kathmandu">Kathmandu</option>
@@ -425,7 +469,7 @@
 
           <div class="column is-12">
             <label class="label">Country</label>
-            <select name = "country" class="input">
+            <select name="country" class="input">
               <option value="nepal">Nepal</option>
             </select>
             <!-- <input
@@ -435,7 +479,6 @@
               placeholder="Nepal"
               required
             /> -->
-            
           </div>
         </div>
 
@@ -451,6 +494,23 @@
       </div>
       {% endif %}
     </section>
+  </div>
+</div>
+
+<!-- Modal for showing detailed history -->
+<div id="historyModal" class="modal">
+  <div class="modal-background" onclick="closeModal('historyModal')"></div>
+  <div class="modal-card" style="max-width: 700px">
+    <header class="modal-card-head">
+      <p class="modal-card-title" id="historyModalTitle">Details</p>
+      <button class="delete" onclick="closeModal('historyModal')"></button>
+    </header>
+    <section class="modal-card-body" id="historyModalBody">
+      <div class="has-text-centered">Loading...</div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button" onclick="closeModal('historyModal')">Close</button>
+    </footer>
   </div>
 </div>
 
@@ -490,4 +550,58 @@
     openModal("marketModal");
   });
 </script>
-{% endif %} {% endblock %}
+{% endif %}
+
+<!-- history details for alll the inputs data in dashboard -->
+<script>
+  function showHistory(type) {
+    const modal = document.getElementById("historyModal");
+    const modalTitle = document.getElementById("historyModalTitle");
+    const modalBody = document.getElementById("historyModalBody");
+
+    // Set title
+    let title = "";
+    switch (type) {
+      case "crop":
+        title = "🌾 Crop Recommendations";
+        break;
+      case "yield":
+        title = "📈 Yield Predictions";
+        break;
+      case "disease":
+        title = "🦠 Disease Detections";
+        break;
+      case "market":
+        title = "📊 Market Advisory";
+        break;
+    }
+    modalTitle.innerText = title;
+    modalBody.innerHTML = '<div class="has-text-centered">Loading...</div>';
+    modal.classList.add("is-active");
+
+    // Fetch data from server
+    fetch(`/dashboard/history/${type}/`)
+      .then((response) => response.text())
+      .then((html) => {
+        modalBody.innerHTML = html;
+      })
+      .catch((error) => {
+        modalBody.innerHTML =
+          '<div class="notification is-danger">Error loading data.</div>';
+      });
+  }
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Close notification inside modals when delete button is clicked
+    document
+      .querySelectorAll(".modal .notification .delete")
+      .forEach(($delete) => {
+        $delete.addEventListener("click", () => {
+          $delete.parentNode.remove();
+        });
+      });
+  });
+</script>
+{% endblock %}

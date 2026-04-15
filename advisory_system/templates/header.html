@@ -66,18 +66,20 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
-          {% if user.is_authenticated %}
-          <div class="buttons">
-            <span class="mr-3 has-text-weight-semibold">
-              👤 {{ user.username }}
-            </span>
-
-            <a class="button is-danger is-light" href="{% url 'logout' %}">
-              Logout
-            </a>
-          </div>
+          
+          {% if user.is_authenticated %} {% if user.is_superuser %}
+          <a class="button is-danger" href="/admin/"> Admin Panel </a>
+          <a class="button is-light" href="{% url 'logout' %}"> Logout </a>
 
           {% else %}
+          <a class="button is-link is-light" href="{% url 'dashboard' %}">
+            👤 {{ user.username }} Dashboard
+          </a>
+
+          <a class="button is-danger is-light" href="{% url 'logout' %}">
+            Logout
+          </a>
+          {% endif %} {% else %}
           <div class="buttons">
             <a
               class="button is-success is-light"

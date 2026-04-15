@@ -1,0 +1,28 @@
+{% if records %}
+<table class="table is-fullwidth is-striped">
+  <thead>
+    <tr>
+      <th>Crop</th>
+      <th>Market</th>
+      <th>Year/Month</th>
+      <th>Country</th>
+      <th>Predicted Price (NPR/kg)</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in records %}
+    <tr>
+      <td>{{ r.crop }}</td>
+      <td>{{ r.market }}</td>
+      <td>{{ r.year }}/{{ r.month }}</td>
+      <td>{{ r.country }}</td>
+      <td>{{ r.predicted_price }}</td>
+      <td>{{ r.created_at|date:"Y-m-d" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="notification is-info">No market predictions yet.</div>
+{% endif %}

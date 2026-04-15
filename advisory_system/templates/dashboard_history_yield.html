@@ -1,0 +1,32 @@
+{% if records %}
+<table class="table is-fullwidth is-striped">
+  <thead>
+    <tr>
+      <th>Crop</th>
+      <th>Area</th>
+      <th>Year</th>
+      <th>Rainfall</th>
+      <th>Pesticides</th>
+      <th>Temp</th>
+      <th>Predicted Yield (hg/ha)</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in records %}
+    <tr>
+      <td>{{ r.crop }}</td>
+      <td>{{ r.area }}</td>
+      <td>{{ r.year }}</td>
+      <td>{{ r.average_rainfall }}</td>
+      <td>{{ r.pesticides_tonnes }}</td>
+      <td>{{ r.avg_temp }}</td>
+      <td>{{ r.predicted_yield }}</td>
+      <td>{{ r.created_at|date:"Y-m-d" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="notification is-info">No yield predictions yet.</div>
+{% endif %}

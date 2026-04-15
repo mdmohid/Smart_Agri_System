@@ -1,0 +1,43 @@
+<!-- <form method="POST">
+  {% csrf_token %}
+  <input type="text" name="otp" placeholder="Enter OTP" required />
+  <button type="submit">Verify OTP</button>
+</form> -->
+
+<!-- OTP Modal -->
+<div id="otpModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">OTP Verification</p>
+      <button
+        class="delete"
+        aria-label="close"
+        onclick="closeModal('otpModal')"
+      ></button>
+    </header>
+    <form method="POST" action="{% url 'verify_otp' %}" id="otpForm">
+      {% csrf_token %}
+      <section class="modal-card-body">
+        <div class="field">
+          <label class="label">Enter OTP</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              name="otp"
+              placeholder="Enter OTP"
+              required
+            />
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button" type="button" onclick="closeModal('otpModal')">
+          Cancel
+        </button>
+        <button class="button is-success" type="submit">Verify OTP</button>
+      </footer>
+    </form>
+  </div>
+</div>

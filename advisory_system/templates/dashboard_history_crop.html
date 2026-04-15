@@ -1,0 +1,36 @@
+{% if records %}
+<div class="table-container">
+  <table class="table is-fullwidth is-striped">
+    <thead>
+      <tr>
+        <th>Crop</th>
+        <th>N</th>
+        <th>P</th>
+        <th>K</th>
+        <th>Temp</th>
+        <th>Humidity</th>
+        <th>pH</th>
+        <th>Rainfall</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in records %}
+      <tr>
+        <td>{{ r.recommended_crop }}</td>
+        <td>{{ r.nitrogen }}</td>
+        <td>{{ r.phosphorus }}</td>
+        <td>{{ r.potassium }}</td>
+        <td>{{ r.temperature }}</td>
+        <td>{{ r.humidity }}</td>
+        <td>{{ r.ph }}</td>
+        <td>{{ r.rainfall }}</td>
+        <td>{{ r.created_at|date:"Y-m-d" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="notification is-info">No crop recommendations yet.</div>
+{% endif %}

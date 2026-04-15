@@ -1,0 +1,22 @@
+{% if records %}
+<table class="table is-fullwidth is-striped">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Disease Name</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in records %}
+    <tr>
+      <td><a href="{{ r.image.url }}" target="_blank">View Image</a></td>
+      <td>{{ r.disease_name }}</td>
+      <td>{{ r.created_at|date:"Y-m-d" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="notification is-info">No disease detections yet.</div>
+{% endif %}

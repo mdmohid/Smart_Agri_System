@@ -123,6 +123,30 @@
       .modal {
         z-index: 1050 !important;
       }
+
+      /* Force white background for history modal table */
+      #historyModal .modal-card-body,
+      #historyModal .table-container,
+      #historyModal .table,
+      #historyModal table,
+      #historyModal td,
+      #historyModal th {
+        background-color: white !important;
+      }
+
+      #historyModal .table th {
+        background-color: #f1f9f0 !important;
+        color: #1e3a2f !important;
+      }
+
+      #historyModal .table td {
+        color: #1a202c !important;
+      }
+
+      /* If using striped rows */
+      #historyModal .table.is-striped tbody tr:nth-child(even) td {
+        background-color: #f9f9f9 !important;
+      }
     </style>
   </head>
   <body>
@@ -165,6 +189,15 @@
             });
           }
         });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("delete")) {
+          const notification = e.target.closest(".notification");
+          if (notification) notification.remove();
+        }
       });
     </script>
   </body>
