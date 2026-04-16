@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% load static %} {% block title %}Dashboard 
-{% endblock %} {% block extra_css %}
+{% extends "base.html" %} {% load static %} {% block title %}Dashboard {%
+endblock %} {% block extra_css %}
 <style>
   /* Sidebar styling */
   .sidebar {
@@ -263,9 +263,22 @@
         </button>
       </form>
 
+      <div class="notification is-info is-light mt-3" style="font-size: 0.9rem">
+        <i class="fas fa-info-circle"></i> <strong>Disclaimer:</strong> This
+        model is trained only on the following crops:<br />
+        <span style="display: inline-block; margin-top: 0.5rem">
+          rice, maize, chickpea, kidneybeans, pigeonpeas, mothbeans, mungbean,
+          blackgram, lentil, pomegranate, banana, mango, grapes, watermelon,
+          muskmelon, apple, orange, papaya, coconut, cotton, jute, coffee </span
+        ><br />
+        Predictions for other crops may be unreliable. Input values should be
+        within typical agricultural ranges.
+      </div>
+
       <!-- Result -->
       {% if crop_result %}
       <div class="notification is-success mt-4">
+        <button class="delete"></button>
         🌱 Recommended Crop: <strong>{{ crop_result }}</strong>
       </div>
       {% endif %}
@@ -360,9 +373,19 @@
         </button>
       </form>
 
+      <div class="notification is-info is-light mt-3" style="font-size: 0.9rem">
+        <i class="fas fa-info-circle"></i> <strong>Disclaimer:</strong> This
+        model is trained on the following crops: maize, potatoes, rice, sorghum,
+        soybeans, wheat, cassava, sweet potatoes, plantains and others, yams.<br />
+        Cassava and yams are indeed cultivated in Nepal, but on a smaller scale
+        compared to staple crops like rice, maize, wheat and potatoes. Please
+        consider local growing conditions when using these predictions.
+      </div>
+
       <!-- RESULT -->
       {% if yield_result %}
       <div class="notification is-info mt-4">
+        <button class="delete"></button>
         📈 Predicted Yield: <strong>{{ yield_result }} hg/ha</strong>
       </div>
       {% endif %}
@@ -403,9 +426,17 @@
         </button>
       </form>
 
+      <div class="notification is-info is-light mt-3" style="font-size: 0.9rem">
+        <i class="fas fa-info-circle"></i> <strong>Disclaimer:</strong> This
+        model detects diseases and healthy conditions in
+        <strong>rice, maize, wheat, sugarcane, and cotton</strong> leaves.
+        Uploaded images of other plants may produce incorrect results.
+      </div>
+
       <!-- RESULT -->
       {% if disease_result %}
       <div class="notification is-danger mt-4">
+        <button class="delete"></button>
         🦠 Detected: <strong>{{ disease_result }}</strong>
       </div>
       {% endif %}
@@ -487,9 +518,18 @@
         </button>
       </form>
 
+      <div class="notification is-info is-light mt-3" style="font-size: 0.9rem">
+        <i class="fas fa-info-circle"></i> <strong>Disclaimer:</strong> This
+        model provides price predictions for common crops (e.g., rice, potato,
+        tomato, maize, wheat, sugarcane, etc.) in major markets (Kalimati,
+        Kathmandu, Hetauda, Biratnagar). Results for other crops may be less
+        reliable.
+      </div>
+
       <!-- RESULT -->
       {% if market_result %}
       <div class="notification is-warning mt-4">
+        <button class="delete"></button>
         💰 Predicted Price: <strong>{{ market_result }} NPR/kg</strong>
       </div>
       {% endif %}

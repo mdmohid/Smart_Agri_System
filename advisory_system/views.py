@@ -367,7 +367,15 @@ from .models import Profile
 
 #     return redirect('home')
 
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.shortcuts import redirect
+from django.core.mail import send_mail
 
+from .utils import generate_otp
+from django.conf import settings
+from .models import Profile
+from django.db import connection
 def register_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -399,6 +407,16 @@ def register_view(request):
         profile.otp = otp
         # profile.save()
         profile.save(update_fields=['otp'])  # force update
+
+        
+        
+        # profile, _ = Profile.objects.get_or_create(user=user)
+        # # Direct SQL update – bypasses transaction rollback
+        # with connection.cursor() as cursor:
+        #     cursor.execute(
+        #         "UPDATE advisory_system_profile SET otp = %s WHERE user_id = %s",
+        #         [otp, user.id]
+        #     )
 
         # Send email
         send_mail(
@@ -755,7 +773,7 @@ def dashboard(request):
             except ValueError as e:
                 if "unseen labels" in str(e):
                     yield_result = 0.0
-                    yield_error=f"Unknown crop or area: '{crop}' / '{area}'. Please use supported values."
+                    yield_error=f"Unknown crop : '{crop}'. Please use supported values."
                 else:
                     yield_result = 0.0
                     yield_error= f"Yield prediction failed: {str(e)}"
@@ -820,7 +838,7 @@ def dashboard(request):
             except ValueError as e:
                 if "unseen labels" in str(e):
                     market_result = 0.0
-                    market_error=f"Unknown crop/market/country: '{crop}' / '{market}' / '{country}'. Please use supported values."
+                    market_error=f"Unknown crop: '{crop}'. Please use supported values."
                 else:
                     market_result = 0.0
                     market_error=f"Market prediction failed: {str(e)}"

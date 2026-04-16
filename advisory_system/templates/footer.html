@@ -26,28 +26,77 @@
       </div>
 
       <!-- Help & Support -->
-      <div class="column is-3">
+      <!-- <div class="column is-3">
         <h3 class="title is-6 has-text-white mb-3">Help & Support</h3>
         <p><a href="#" class="has-text-white">FAQ</a></p>
         <p><a href="#" class="has-text-white">Documentation</a></p>
         <p><a href="#" class="has-text-white">Support Center</a></p>
         <p><a href="#" class="has-text-white">Privacy Policy</a></p>
+      </div> -->
+
+      <!-- Help & Support (Modal links) -->
+      <div class="column is-3">
+        <h3 class="title is-6 has-text-white mb-3">Help & Support</h3>
+        <p>
+          <a
+            href="#"
+            class="has-text-white"
+            onclick="
+              openModal('faqModal');
+              return false;
+            "
+            >FAQ</a
+          >
+        </p>
+        <p>
+          <a
+            href="#"
+            class="has-text-white"
+            onclick="
+              openModal('docsModal');
+              return false;
+            "
+            >Documentation</a
+          >
+        </p>
+        <p>
+          <a
+            href="#"
+            class="has-text-white"
+            onclick="
+              openModal('supportModal');
+              return false;
+            "
+            >Support Center</a
+          >
+        </p>
+        <p>
+          <a
+            href="#"
+            class="has-text-white"
+            onclick="
+              openModal('privacyModal');
+              return false;
+            "
+            >Privacy Policy</a
+          >
+        </p>
       </div>
 
       <!-- Social Media -->
       <div class="column is-3">
         <h3 class="title is-6 has-text-white mb-3">Connect With Us</h3>
         <div class="buttons is-left">
-          <a class="social-btn" href="#">
+          <a class="social-btn" href="https://www.facebook.com/">
             <span class="icon"><i class="fab fa-facebook-f"></i></span>
           </a>
-          <a class="social-btn" href="#">
+          <a class="social-btn" href="https://x.com/">
             <span class="icon"><i class="fab fa-twitter"></i></span>
           </a>
-          <a class="social-btn" href="#">
+          <a class="social-btn" href="https://www.instagram.com">
             <span class="icon"><i class="fab fa-instagram"></i></span>
           </a>
-          <a class="social-btn" href="#">
+          <a class="social-btn" href="https://www.LinkedIn.com">
             <span class="icon"><i class="fab fa-linkedin-in"></i></span>
           </a>
         </div>
@@ -66,6 +115,148 @@
     </p>
   </div>
 </footer>
+
+<!-- ==================== MODALS FOR HELP & SUPPORT ==================== -->
+
+<!-- FAQ Modal -->
+<div id="faqModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Frequently Asked Questions</p>
+      <button class="delete" onclick="closeModal('faqModal')"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="content">
+        <h4>🌾 What is AgriSmart?</h4>
+        <p>
+          AgriSmart is an AI‑powered advisory system that helps farmers with
+          crop recommendations, disease detection, yield prediction, and market
+          prices.
+        </p>
+        <h4>📱 Is there a mobile app?</h4>
+        <p>
+          Currently we offer a responsive web app. A mobile app is planned for
+          future releases.
+        </p>
+        <h4>💵 Is the service free?</h4>
+        <p>
+          Basic features are free. Premium plans with advanced analytics will be
+          available soon.
+        </p>
+        <h4>🛠 How accurate are the predictions?</h4>
+        <p>
+          Our models are trained on real agricultural data and achieve >85%
+          accuracy in field tests.
+        </p>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" onclick="closeModal('faqModal')">
+        Close
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- Documentation Modal -->
+<div id="docsModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Documentation</p>
+      <button class="delete" onclick="closeModal('docsModal')"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="content">
+        <ul>
+          <li><a href="#" target="_blank">User Guide (PDF)</a></li>
+          <li><a href="#" target="_blank">API Reference</a></li>
+          <li><a href="#" target="_blank">Video Tutorials</a></li>
+          <li><a href="#" target="_blank">Model Explanation</a></li>
+        </ul>
+        <p>
+          For detailed documentation, please visit our
+          <a href="#">knowledge base</a>.
+        </p>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" onclick="closeModal('docsModal')">
+        Close
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- Support Center Modal -->
+<div id="supportModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Support Center</p>
+      <button class="delete" onclick="closeModal('supportModal')"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="content">
+        <p>
+          📧 Email:
+          <a href="mailto:alammohid855@gmail.com"
+            >support@agrismart.com OR alammohid855@gmail.com</a
+          >
+        </p>
+        <p>📞 Phone: +977 9819965626</p>
+        <p>⏰ Hours: Monday – Friday, 9 AM – 6 PM (NPT)</p>
+        <p>💬 Live Chat: Available on the website (bottom right)</p>
+        <hr />
+        <p>
+          For technical issues, please include your username and a screenshot of
+          the problem.
+        </p>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" onclick="closeModal('supportModal')">
+        Close
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- Privacy Policy Modal -->
+<div id="privacyModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Privacy Policy</p>
+      <button class="delete" onclick="closeModal('privacyModal')"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="content">
+        <p>Last updated: April 2026</p>
+        <p>
+          We value your privacy. AgriSmart collects only necessary data (name,
+          email, location) to provide accurate agricultural recommendations. We
+          never sell your personal data to third parties. Your crop data is used
+          only to improve our models and is anonymized.
+        </p>
+        <p>
+          You can request deletion of your account and all associated data at
+          any time by contacting support.
+        </p>
+        <p>
+          For full details, please read our
+          <a href="#">complete privacy policy</a>.
+        </p>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" onclick="closeModal('privacyModal')">
+        Close
+      </button>
+    </footer>
+  </div>
+</div>
 
 <style>
   .footer a {
@@ -96,5 +287,20 @@
     background-color: #48c78e;
     color: #1e3a2f;
     transform: translateY(-3px);
+  }
+
+  /* Modal content styling (optional) */
+  .modal-card-body .content a {
+    color: #0f6f18;
+  }
+  .modal-card-body .content a:hover {
+    text-decoration: underline;
+  }
+
+  /* Make paragraphs and h4 bold & black inside modals */
+  .modal-card-body p,
+  .modal-card-body h4 {
+    font-weight: bold !important;
+    color: #0a4d11 !important;
   }
 </style>
