@@ -61,32 +61,15 @@ AgriSmart{% endblock %} {% block extra_css %}
           Get personalized crop suggestions based on soil conditions, climate
           data, and local market trends for optimal yield.
         </p>
-        <a href="#" class="button btn-primary mt-4">Use Feature →</a>
+        <!-- <a href="#" class="button btn-primary mt-4">Use Feature →</a> -->
+        <p class="has-text-grey-dark mt-4">
+          <i class="fas fa-lock"></i> Login to use this feature
+        </p>
       </div>
       <div class="column is-4 has-text-centered">
         <img
           src="../static/images/croprecom.avif"
           alt="Crop rec"
-          style="border-radius: 1.5rem"
-        />
-      </div>
-    </div>
-
-    <!-- Disease Detection -->
-    <div class="feature-page-card columns is-vcentered">
-      <div class="column is-8">
-        <div class="feature-icon-lg"><i class="fas fa-disease"></i></div>
-        <h2 class="title is-3 has-text-grey-dark">Disease Detection</h2>
-        <p class="is-size-5 has-text-grey-dark">
-          Upload crop images to instantly identify diseases and pests with
-          AI-powered analysis and treatment recommendations.
-        </p>
-        <a href="#" class="button btn-primary mt-4">Use Feature →</a>
-      </div>
-      <div class="column is-4 has-text-centered">
-        <img
-          src="../static/images/diseasedetec.avif"
-          alt="Disease"
           style="border-radius: 1.5rem"
         />
       </div>
@@ -101,12 +84,42 @@ AgriSmart{% endblock %} {% block extra_css %}
           Forecast crop yields using historical data, weather patterns, and
           farming practices to plan harvest and sales.
         </p>
-        <a href="#" class="button btn-primary mt-4">Use Feature →</a>
+        <!-- <a href="#" class="button btn-primary mt-4">Use Feature →</a> -->
+        <!-- <a href="{% url 'dashboard' %}" class="button btn-primary mt-4"
+          >Use Feature →</a
+        > -->
+        <!-- <p class="has-text-grey">Login to access this feature</p> -->
+        <p class="has-text-grey-dark mt-4">
+          <i class="fas fa-lock"></i> Login to use this feature
+        </p>
       </div>
       <div class="column is-4 has-text-centered">
         <img
           src="../static/images/yieldpre.avif"
           alt="Yield"
+          style="border-radius: 1.5rem"
+        />
+      </div>
+    </div>
+
+    <!-- Disease Detection -->
+    <div class="feature-page-card columns is-vcentered">
+      <div class="column is-8">
+        <div class="feature-icon-lg"><i class="fas fa-disease"></i></div>
+        <h2 class="title is-3 has-text-grey-dark">Disease Detection</h2>
+        <p class="is-size-5 has-text-grey-dark">
+          Upload crop images to instantly identify diseases and pests with
+          AI-powered analysis and treatment recommendations.
+        </p>
+        <!-- <a href="#" class="button btn-primary mt-4">Use Feature →</a> -->
+        <p class="has-text-grey-dark mt-4">
+          <i class="fas fa-lock"></i> Login to use this feature
+        </p>
+      </div>
+      <div class="column is-4 has-text-centered">
+        <img
+          src="../static/images/diseasedetec.avif"
+          alt="Disease"
           style="border-radius: 1.5rem"
         />
       </div>
@@ -121,7 +134,10 @@ AgriSmart{% endblock %} {% block extra_css %}
           Access real-time market prices, demand forecasts, and optimal selling
           strategies to maximize profit margins.
         </p>
-        <a href="#" class="button btn-primary mt-4">Use Feature →</a>
+        <!-- <a href="#" class="button btn-primary mt-4">Use Feature →</a> -->
+        <p class="has-text-grey-dark mt-4">
+          <i class="fas fa-lock"></i> Login to use this feature
+        </p>
       </div>
       <div class="column is-4 has-text-centered">
         <img
@@ -135,11 +151,17 @@ AgriSmart{% endblock %} {% block extra_css %}
     <!-- Quick Access -->
     <div class="has-text-centered mt-6">
       <h3 class="title is-4 has-text-grey-dark">Quick Access</h3>
-      <div class="quick-access-buttons">
+      <!-- <div class="quick-access-buttons">
         <a href="#" class="quick-btn">🌾 Crop Rec.</a>
         <a href="#" class="quick-btn">🦠 Disease Det.</a>
         <a href="#" class="quick-btn">📊 Yield Pred.</a>
         <a href="#" class="quick-btn">📈 Market Adv.</a>
+      </div> -->
+      <div class="quick-access-buttons">
+        <span class="quick-btn">🌾 Crop Rec. (Login required)</span>
+        <span class="quick-btn">📊 Yield Pred. (Login required)</span>
+        <span class="quick-btn">🦠 Disease Det. (Login required)</span>
+        <span class="quick-btn">📈 Market Adv. (Login required)</span>
       </div>
     </div>
   </div>

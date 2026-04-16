@@ -126,6 +126,19 @@
             >Forgot Password?</a
           >
         </div>
+        <p class="has-text-centered mt-3">
+          Don't have an account?
+          <a
+            href="#"
+            onclick="
+              openModal('registerModal');
+              closeModal('loginModal');
+              return false;
+            "
+            style="color: #2f855a"
+            >Register</a
+          >
+        </p>
       </section>
       <footer class="modal-card-foot" style="justify-content: flex-end">
         <button class="button" type="button" onclick="closeModal('loginModal')">
